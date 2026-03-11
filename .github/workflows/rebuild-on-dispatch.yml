@@ -1,0 +1,22 @@
+# Rebuild when brunnr pushes skill updates, or on push to main.
+name: Build Skillipedia
+
+on:
+  repository_dispatch:
+    types: [brunnr-skills-updated]
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+
+      - run: bun install
+
+      - run: bun run build
+        # Vercel handles deploy via its own git integration,
+        # but this ensures the build passes on every push/dispatch.

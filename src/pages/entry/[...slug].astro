@@ -16,7 +16,19 @@ const { entry } = Astro.props;
 const { Content } = await render(entry);
 const { data } = entry;
 
-const claimHtml = await marked.parse(data.claim, { breaks: true });
+// Extract the lead paragraph from the claim — everything before the first code block,
+// table, or heading. The full content is shown below via <Content />.
+const claimLead = data.claim
+  .split(/```/)[0]                                  // before first code fence
+  .split(/\n\s*\|/)[0]                              // before first table row
+  .split(/\n\s*#{2,}/)[0]                           // before first sub-heading
+  .replace(/\*\*([^*]+)\*\*/g, "$1")                // bold -> plain
+  .replace(/`([^`]+)`/g, "<code>$1</code>")         // inline code -> html
+  .replace(/\n{2,}/g, "</p><p>")                     // paragraph breaks
+  .replace(/\n/g, " ")
+  .replace(/\s{2,}/g, " ")
+  .trim();
+const claimHtml = `<p>${claimLead}</p>`;
 
 const confidenceColor =
   data.confidence >= 0.8

@@ -1,5 +1,4 @@
 ---
-import { marked } from "marked";
 import TypeBadge from "./TypeBadge.astro";
 
 interface Props {
@@ -13,7 +12,25 @@ interface Props {
 }
 
 const { slug, id, type, claim, domain, confidence, tags } = Astro.props;
-const claimHtml = await marked.parse(claim, { breaks: true });
+
+// For cards: extract a clean text excerpt — strip markdown syntax, truncate
+const plainClaim = claim
+  .replace(/```[\s\S]*?(?:```|$)/g, "")  // remove fenced code blocks (incl. unclosed)
+  .replace(/`{3}/g, "")                  // remove stray triple backticks
+  .replace(/\|[^\n]+\|/g, "")           // remove table rows
+  .replace(/\|-+/g, "")                 // remove table separators
+  .replace(/#{1,6}\s+/g, "")            // remove headings
+  .replace(/>\s+/g, "")                 // remove blockquotes
+  .replace(/\*\*([^*]+)\*\*/g, "$1")    // bold -> plain
+  .replace(/`([^`]+)`/g, "$1")          // inline code -> plain
+  .replace(/`/g, "")                    // remove stray backticks
+  .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1") // links -> text
+  .replace(/\n{2,}/g, " ")              // collapse newlines
+  .replace(/\n/g, " ")
+  .replace(/\s{2,}/g, " ")
+  .replace(/^\s*-\s+/gm, "- ")          // normalize list items
+  .trim();
+const excerpt = plainClaim.length > 180 ? plainClaim.slice(0, 177) + "..." : plainClaim;
 
 const accentBar = {
   skill: "bg-falun-500 dark:bg-falun-600",
@@ -41,7 +58,7 @@ const accentBar = {
     </div>
 
     <!-- Claim -->
-    <div class="prose-norse font-serif text-sm leading-relaxed text-ink-700 dark:text-parchment-300" set:html={claimHtml} />
+    <p class="font-serif text-sm leading-relaxed text-ink-700 dark:text-parchment-300">{excerpt}</p>
 
     <!-- Tags -->
     {tags && tags.length > 0 && (
