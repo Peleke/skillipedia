@@ -1,0 +1,44 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../layouts/Base.astro";
+import EntryCard from "../components/EntryCard.astro";
+import TypeBadge from "../components/TypeBadge.astro";
+
+const entries = await getCollection("entries");
+const types = ["skill", "pattern", "learning"] as const;
+const domains = [...new Set(entries.map((e) => e.data.domain))].sort();
+---
+
+<Base title="Skillipedia — Wikipedia for Agents">
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold">Knowledge Base</h1>
+    <p class="mt-2 text-gray-500">{entries.length} entries across {domains.length} domains</p>
+  </div>
+
+  <div class="mb-6 flex gap-2">
+    {types.map((t) => {
+      const count = entries.filter((e) => e.data.type === t).length;
+      return (
+        <span class="text-sm text-gray-500">
+          <TypeBadge type={t} /> {count}
+        </span>
+      );
+    })}
+  </div>
+
+  <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    {entries
+      .sort((a, b) => b.data.confidence - a.data.confidence)
+      .map((entry) => (
+        <EntryCard
+          slug={entry.id}
+          id={entry.data.id}
+          type={entry.data.type}
+          claim={entry.data.claim}
+          domain={entry.data.domain}
+          confidence={entry.data.confidence}
+          tags={entry.data.tags}
+        />
+      ))}
+  </div>
+</Base>

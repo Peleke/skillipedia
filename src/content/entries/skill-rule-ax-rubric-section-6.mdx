@@ -1,0 +1,53 @@
+---
+id: skill_rule:ax-rubric:section:6
+type: skill
+claim: 'If the user provides multiple descriptions (e.g., an MCP server''s full tool
+  set), score all of them in a summary table first:
+
+
+  ```
+
+  | Tool | Score | Worst gap |
+
+  |------|-------|-----------|
+
+  | tool_a | '
+confidence: 0.75
+domain: skill:ax-rubric
+derivation: literal
+category: Batch Mode
+source_concepts:
+- skill:ax-rubric:section:6
+- skill:ax-rubric
+provenance:
+  id: skill_rule:ax-rubric:section:6
+  domain: skill:ax-rubric
+  derivation: literal
+  source_concepts:
+  - skill:ax-rubric:section:6
+  - skill:ax-rubric
+  confidence: 0.75
+  relevance: 0.0
+  relation_type: null
+  template_id: null
+  template_variant: null
+  template_severity: null
+metadata:
+  source_id: skill_md:ax-rubric:176d8e11b4fd4b0c
+  skill_format: canonical
+generated_at: '2026-03-11T06:48:09.752528+00:00'
+---
+
+## skill_rule:ax-rubric:section:6
+
+If the user provides multiple descriptions (e.g., an MCP server's full tool set), score all of them in a summary table first:
+
+```
+| Tool | Score | Worst gap |
+|------|-------|-----------|
+| tool_a | 2/5 | No cost signal, no trigger |
+| tool_b | 4/5 | Generic differentiation |
+| tool_c | 1/5 | Everything |
+```
+
+Then provide individual breakdowns for tools scoring below 4/5. Tools already at 4-5 get a one-line note, not a full breakdown.

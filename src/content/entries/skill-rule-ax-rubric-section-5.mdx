@@ -1,0 +1,73 @@
+---
+id: skill_rule:ax-rubric:section:5
+type: skill
+claim: 'For each tool description reviewed, produce:
+
+
+  ```
+
+  ### {tool_name}
+
+
+  **Score: {n}/5**
+
+
+  | Criterion | Result | Notes |
+
+  |-----------|--------|-------|
+
+  | Output shape | pass/fail | {one line} |
+
+  | Cost sign'
+confidence: 0.75
+domain: skill:ax-rubric
+derivation: literal
+category: Output Format
+source_concepts:
+- skill:ax-rubric:section:5
+- skill:ax-rubric
+provenance:
+  id: skill_rule:ax-rubric:section:5
+  domain: skill:ax-rubric
+  derivation: literal
+  source_concepts:
+  - skill:ax-rubric:section:5
+  - skill:ax-rubric
+  confidence: 0.75
+  relevance: 0.0
+  relation_type: null
+  template_id: null
+  template_variant: null
+  template_severity: null
+metadata:
+  source_id: skill_md:ax-rubric:176d8e11b4fd4b0c
+  skill_format: canonical
+generated_at: '2026-03-11T06:48:09.752187+00:00'
+---
+
+## skill_rule:ax-rubric:section:5
+
+For each tool description reviewed, produce:
+
+```
+### {tool_name}
+
+**Score: {n}/5**
+
+| Criterion | Result | Notes |
+|-----------|--------|-------|
+| Output shape | pass/fail | {one line} |
+| Cost signal | pass/fail | {one line} |
+| Trigger clarity | pass/fail | {one line} |
+| Specificity | pass/fail | {one line} |
+| Differentiation | pass/fail | {one line} |
+
+**Original:**
+> {original description}
+
+**Rewritten (5/5):**
+> {rewritten description}
+
+**Key changes:**
+{2-3 sentences on what changed and why}
+```

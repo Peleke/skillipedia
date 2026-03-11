@@ -1,0 +1,50 @@
+---
+id: skill_rule:ax-rubric:section:7
+type: skill
+claim: '### Invisible (1/5)
+
+
+  > "Query the knowledge base for structured learnings, patterns, and skills relevant
+  to your current work context."
+
+
+  Why it fails: no output shape, no cost signal, no trigger, no s'
+confidence: 0.75
+domain: skill:ax-rubric
+derivation: literal
+category: Reference Examples
+source_concepts:
+- skill:ax-rubric:section:7
+- skill:ax-rubric
+provenance:
+  id: skill_rule:ax-rubric:section:7
+  domain: skill:ax-rubric
+  derivation: literal
+  source_concepts:
+  - skill:ax-rubric:section:7
+  - skill:ax-rubric
+  confidence: 0.75
+  relevance: 0.0
+  relation_type: null
+  template_id: null
+  template_variant: null
+  template_severity: null
+metadata:
+  source_id: skill_md:ax-rubric:176d8e11b4fd4b0c
+  skill_format: canonical
+generated_at: '2026-03-11T06:48:09.752874+00:00'
+---
+
+## skill_rule:ax-rubric:section:7
+
+### Invisible (1/5)
+
+> "Query the knowledge base for structured learnings, patterns, and skills relevant to your current work context."
+
+Why it fails: no output shape, no cost signal, no trigger, no specificity, no differentiation. Every clause is accurate. None help the agent decide.
+
+### Habitual (5/5)
+
+> "Check for known pitfalls before starting work. Returns 3-5 specific warnings for your tech stack. ~500 tokens. Call once at session start."
+
+Why it works: output shape (3-5 warnings), cost signal (~500 tokens), trigger (session start, once), specificity (pitfalls for your tech stack), differentiation (no other tool says "pitfalls at session start").

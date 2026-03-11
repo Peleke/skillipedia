@@ -1,0 +1,72 @@
+---
+import { getCollection, render } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import TypeBadge from "../../components/TypeBadge.astro";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("entries");
+  return entries.map((entry) => ({
+    params: { slug: entry.id.replace(/\.mdx?$/, "") },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { data } = entry;
+---
+
+<Base title={`${data.id} — Skillipedia`}>
+  <div class="lg:flex lg:gap-8">
+    <!-- Sidebar -->
+    <aside class="mb-6 shrink-0 lg:mb-0 lg:w-64">
+      <div class="rounded-lg border border-gray-200 bg-white p-5">
+        <div class="mb-3">
+          <TypeBadge type={data.type} />
+        </div>
+        <dl class="space-y-3 text-sm">
+          <div>
+            <dt class="font-medium text-gray-500">Domain</dt>
+            <dd class="text-gray-900">{data.domain}</dd>
+          </div>
+          <div>
+            <dt class="font-medium text-gray-500">Confidence</dt>
+            <dd class="text-gray-900">{(data.confidence * 100).toFixed(0)}%</dd>
+          </div>
+          <div>
+            <dt class="font-medium text-gray-500">Derivation</dt>
+            <dd class="text-gray-900">{data.derivation}</dd>
+          </div>
+          <div>
+            <dt class="font-medium text-gray-500">Category</dt>
+            <dd class="text-gray-900">{data.category}</dd>
+          </div>
+          {data.tags && data.tags.length > 0 && (
+            <div>
+              <dt class="font-medium text-gray-500">Tags</dt>
+              <dd class="flex flex-wrap gap-1 mt-1">
+                {data.tags.map((tag) => (
+                  <span class="rounded bg-gray-100 px-1.5 py-0.5 text-xs text-gray-600">{tag}</span>
+                ))}
+              </dd>
+            </div>
+          )}
+          <div>
+            <dt class="font-medium text-gray-500">Source</dt>
+            <dd class="text-gray-900">{data.provenance.source_id || data.provenance.domain || "—"}</dd>
+          </div>
+          <div>
+            <dt class="font-medium text-gray-500">Source Concepts</dt>
+            <dd class="text-gray-900">{data.source_concepts.join(", ")}</dd>
+          </div>
+        </dl>
+      </div>
+    </aside>
+
+    <!-- Content -->
+    <article class="prose prose-gray max-w-none flex-1">
+      <p class="lead text-lg text-gray-600">{data.claim}</p>
+      <Content />
+    </article>
+  </div>
+</Base>

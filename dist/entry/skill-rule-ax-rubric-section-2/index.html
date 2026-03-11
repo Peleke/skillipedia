@@ -1,0 +1,60 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>skill_rule:ax-rubric:section:2 — Skillipedia</title><link rel="stylesheet" href="/_astro/domains.BahDNTh7.css"></head> <body class="min-h-screen"> <header class="border-b border-gray-200 bg-white"> <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4"> <a href="/" class="text-xl font-bold text-gray-900">Skillipedia</a> <div class="flex gap-6 text-sm font-medium text-gray-600"> <a href="/" class="hover:text-gray-900">Home</a> <a href="/domains" class="hover:text-gray-900">Domains</a> </div> </nav> </header> <main class="mx-auto max-w-6xl px-6 py-8">  <div class="lg:flex lg:gap-8"> <!-- Sidebar --> <aside class="mb-6 shrink-0 lg:mb-0 lg:w-64"> <div class="rounded-lg border border-gray-200 bg-white p-5"> <div class="mb-3"> <span class="inline-block rounded-full px-2.5 py-0.5 text-xs font-medium bg-blue-100 text-blue-800"> skill </span> </div> <dl class="space-y-3 text-sm"> <div> <dt class="font-medium text-gray-500">Domain</dt> <dd class="text-gray-900">skill:ax-rubric</dd> </div> <div> <dt class="font-medium text-gray-500">Confidence</dt> <dd class="text-gray-900">75%</dd> </div> <div> <dt class="font-medium text-gray-500">Derivation</dt> <dd class="text-gray-900">literal</dd> </div> <div> <dt class="font-medium text-gray-500">Category</dt> <dd class="text-gray-900">Phase 1: Score</dd> </div>  <div> <dt class="font-medium text-gray-500">Source</dt> <dd class="text-gray-900">skill:ax-rubric</dd> </div> <div> <dt class="font-medium text-gray-500">Source Concepts</dt> <dd class="text-gray-900">skill:ax-rubric:section:2, skill:ax-rubric</dd> </div> </dl> </div> </aside> <!-- Content --> <article class="prose prose-gray max-w-none flex-1"> <p class="lead text-lg text-gray-600">Score each description against five criteria. Binary pass/fail on each:
+
+| # | Criterion | Pass | Fail |
+|---|-----------|------|------|
+| 1 | **Output shape** | You can picture the response before ca</p> <h2 id="skill_ruleax-rubricsection2">skill_rule:ax-rubric:section:2</h2>
+<p>Score each description against five criteria. Binary pass/fail on each:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>#</th><th>Criterion</th><th>Pass</th><th>Fail</th></tr></thead><tbody><tr><td>1</td><td><strong>Output shape</strong></td><td>You can picture the response before calling (count, format, structure stated)</td><td>“Returns relevant results” — what shape? how many?</td></tr><tr><td>2</td><td><strong>Cost signal</strong></td><td>Token count, response size, or item count stated</td><td>No indication of response size</td></tr><tr><td>3</td><td><strong>Trigger clarity</strong></td><td>You know exactly when to call this (specific event, phase, condition)</td><td>“When relevant” — always true, never actionable</td></tr><tr><td>4</td><td><strong>Specificity</strong></td><td>Solves one named problem</td><td>Lists categories (“learnings, patterns, skills, …“)</td></tr><tr><td>5</td><td><strong>Differentiation</strong></td><td>Distinguishable from every other tool in the set</td><td>Generic language shared by multiple tools</td></tr></tbody></table>
+<h3 id="scoring-bands">Scoring bands</h3>
+<ul>
+<li><strong>0-1 pass</strong>: Invisible. Agent will never call it voluntarily.</li>
+<li><strong>2-3 pass</strong>: Marginal. Agent might call it if specifically looking.</li>
+<li><strong>4-5 pass</strong>: Habitual. Agent calls it every session without prompting.</li>
+</ul>
+<p>For each criterion that fails, state:</p>
+<ul>
+<li>What’s missing</li>
+<li>Why it matters to an agent (<code>so_what</code>)</li>
+<li>What a passing version looks like (one sentence)</li>
+</ul> </article> </div>  </main> </body></html>

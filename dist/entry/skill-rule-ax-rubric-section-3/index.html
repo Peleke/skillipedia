@@ -1,0 +1,20 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>skill_rule:ax-rubric:section:3 — Skillipedia</title><link rel="stylesheet" href="/_astro/domains.BahDNTh7.css"></head> <body class="min-h-screen"> <header class="border-b border-gray-200 bg-white"> <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4"> <a href="/" class="text-xl font-bold text-gray-900">Skillipedia</a> <div class="flex gap-6 text-sm font-medium text-gray-600"> <a href="/" class="hover:text-gray-900">Home</a> <a href="/domains" class="hover:text-gray-900">Domains</a> </div> </nav> </header> <main class="mx-auto max-w-6xl px-6 py-8">  <div class="lg:flex lg:gap-8"> <!-- Sidebar --> <aside class="mb-6 shrink-0 lg:mb-0 lg:w-64"> <div class="rounded-lg border border-gray-200 bg-white p-5"> <div class="mb-3"> <span class="inline-block rounded-full px-2.5 py-0.5 text-xs font-medium bg-blue-100 text-blue-800"> skill </span> </div> <dl class="space-y-3 text-sm"> <div> <dt class="font-medium text-gray-500">Domain</dt> <dd class="text-gray-900">skill:ax-rubric</dd> </div> <div> <dt class="font-medium text-gray-500">Confidence</dt> <dd class="text-gray-900">75%</dd> </div> <div> <dt class="font-medium text-gray-500">Derivation</dt> <dd class="text-gray-900">literal</dd> </div> <div> <dt class="font-medium text-gray-500">Category</dt> <dd class="text-gray-900">Phase 2: Rewrite</dd> </div>  <div> <dt class="font-medium text-gray-500">Source</dt> <dd class="text-gray-900">skill:ax-rubric</dd> </div> <div> <dt class="font-medium text-gray-500">Source Concepts</dt> <dd class="text-gray-900">skill:ax-rubric:section:3, skill:ax-rubric</dd> </div> </dl> </div> </aside> <!-- Content --> <article class="prose prose-gray max-w-none flex-1"> <p class="lead text-lg text-gray-600">Rewrite each description to score 5/5. Follow seven principles:
+
+1. **Lead with the problem, not the action.** &quot;Check for known pitfalls&quot; not &quot;Query the knowledge base.&quot; The agent doesn&#39;t care what th</p> <h2 id="skill_ruleax-rubricsection3">skill_rule:ax-rubric:section:3</h2>
+<p>Rewrite each description to score 5/5. Follow seven principles:</p>
+<ol>
+<li><strong>Lead with the problem, not the action.</strong> “Check for known pitfalls” not “Query the knowledge base.” The agent doesn’t care what the tool does internally. It cares what problem it solves.</li>
+<li><strong>State the cost.</strong> Token count, response size, number of items. An agent facing unbounded expected cost skips the tool to preserve budget for known-cost operations.</li>
+<li><strong>Specify the trigger.</strong> “Call at session start” not “when relevant.” A specific trigger means the agent evaluates once and schedules the call, instead of burning tokens re-evaluating relevance on every decision cycle.</li>
+<li><strong>Bound the output.</strong> “Returns 3-5 items” not “returns relevant results.” The agent needs to allocate context for what’s coming back.</li>
+<li><strong>Include <code>so_what</code>.</strong> Not just the fact — the decision it implies. The translation from information to action is work. If the tool does that work, it’s 2x more valuable for the same token cost.</li>
+<li><strong>Report actual cost in the response.</strong> <code>&quot;token_cost&quot;: 487</code> lets the agent verify the description’s promise. Honesty about cost is how tools build trust with agents.</li>
+<li><strong>Don’t assume the agent will figure it out.</strong> Agents start fresh every session. The description is the only context. If it doesn’t make value obvious in two sentences, the tool is invisible. Every session. Forever.</li>
+</ol>
+<h3 id="constraints">Constraints</h3>
+<ul>
+<li>Maximum 1,024 characters (common tool description limit)</li>
+<li>Two sentences for the core value proposition</li>
+<li>Cost/size hint either inline or as structured metadata</li>
+<li>Trigger condition must be specific and evaluable (not “when appropriate”)</li>
+</ul> </article> </div>  </main> </body></html>

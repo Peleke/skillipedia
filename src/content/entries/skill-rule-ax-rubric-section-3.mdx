@@ -1,0 +1,52 @@
+---
+id: skill_rule:ax-rubric:section:3
+type: skill
+claim: 'Rewrite each description to score 5/5. Follow seven principles:
+
+
+  1. **Lead with the problem, not the action.** "Check for known pitfalls" not "Query
+  the knowledge base." The agent doesn''t care what th'
+confidence: 0.75
+domain: skill:ax-rubric
+derivation: literal
+category: 'Phase 2: Rewrite'
+source_concepts:
+- skill:ax-rubric:section:3
+- skill:ax-rubric
+provenance:
+  id: skill_rule:ax-rubric:section:3
+  domain: skill:ax-rubric
+  derivation: literal
+  source_concepts:
+  - skill:ax-rubric:section:3
+  - skill:ax-rubric
+  confidence: 0.75
+  relevance: 0.0
+  relation_type: null
+  template_id: null
+  template_variant: null
+  template_severity: null
+metadata:
+  source_id: skill_md:ax-rubric:176d8e11b4fd4b0c
+  skill_format: canonical
+generated_at: '2026-03-11T06:48:09.751471+00:00'
+---
+
+## skill_rule:ax-rubric:section:3
+
+Rewrite each description to score 5/5. Follow seven principles:
+
+1. **Lead with the problem, not the action.** "Check for known pitfalls" not "Query the knowledge base." The agent doesn't care what the tool does internally. It cares what problem it solves.
+2. **State the cost.** Token count, response size, number of items. An agent facing unbounded expected cost skips the tool to preserve budget for known-cost operations.
+3. **Specify the trigger.** "Call at session start" not "when relevant." A specific trigger means the agent evaluates once and schedules the call, instead of burning tokens re-evaluating relevance on every decision cycle.
+4. **Bound the output.** "Returns 3-5 items" not "returns relevant results." The agent needs to allocate context for what's coming back.
+5. **Include `so_what`.** Not just the fact — the decision it implies. The translation from information to action is work. If the tool does that work, it's 2x more valuable for the same token cost.
+6. **Report actual cost in the response.** `"token_cost": 487` lets the agent verify the description's promise. Honesty about cost is how tools build trust with agents.
+7. **Don't assume the agent will figure it out.** Agents start fresh every session. The description is the only context. If it doesn't make value obvious in two sentences, the tool is invisible. Every session. Forever.
+
+### Constraints
+
+- Maximum 1,024 characters (common tool description limit)
+- Two sentences for the core value proposition
+- Cost/size hint either inline or as structured metadata
+- Trigger condition must be specific and evaluable (not "when appropriate")

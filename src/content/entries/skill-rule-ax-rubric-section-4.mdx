@@ -1,0 +1,46 @@
+---
+id: skill_rule:ax-rubric:section:4
+type: skill
+claim: 'If the user provides the tool''s response format or schema, also evaluate:
+
+
+  - Does the response include `so_what` fields (actionable implications, not just
+  data)?
+
+  - Does the response report `token_cost'
+confidence: 0.75
+domain: skill:ax-rubric
+derivation: literal
+category: 'Phase 3: Response Design (Optional)'
+source_concepts:
+- skill:ax-rubric:section:4
+- skill:ax-rubric
+provenance:
+  id: skill_rule:ax-rubric:section:4
+  domain: skill:ax-rubric
+  derivation: literal
+  source_concepts:
+  - skill:ax-rubric:section:4
+  - skill:ax-rubric
+  confidence: 0.75
+  relevance: 0.0
+  relation_type: null
+  template_id: null
+  template_variant: null
+  template_severity: null
+metadata:
+  source_id: skill_md:ax-rubric:176d8e11b4fd4b0c
+  skill_format: canonical
+generated_at: '2026-03-11T06:48:09.751839+00:00'
+---
+
+## skill_rule:ax-rubric:section:4
+
+If the user provides the tool's response format or schema, also evaluate:
+
+- Does the response include `so_what` fields (actionable implications, not just data)?
+- Does the response report `token_cost` (actual size for trust calibration)?
+- Does the response include `confidence` scores (so the agent can weight claims)?
+- Is the response bounded (predictable size, no unbounded lists)?
+
+Provide a revised response schema if improvements are needed.

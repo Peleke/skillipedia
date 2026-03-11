@@ -1,0 +1,32 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+}
+
+const { title = "Skillipedia" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+  </head>
+  <body class="min-h-screen">
+    <header class="border-b border-gray-200 bg-white">
+      <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+        <a href="/" class="text-xl font-bold text-gray-900">Skillipedia</a>
+        <div class="flex gap-6 text-sm font-medium text-gray-600">
+          <a href="/" class="hover:text-gray-900">Home</a>
+          <a href="/domains" class="hover:text-gray-900">Domains</a>
+        </div>
+      </nav>
+    </header>
+    <main class="mx-auto max-w-6xl px-6 py-8">
+      <slot />
+    </main>
+  </body>
+</html>
