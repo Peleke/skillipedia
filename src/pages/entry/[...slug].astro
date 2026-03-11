@@ -100,7 +100,9 @@ const confidenceColor =
       <Content />
 
       {/* Install instructions */}
-      {data.type === "skill" && (data.metadata?.source_id || data.domain?.startsWith("skill:")) && (
+      {data.type === "skill" && (data.metadata?.source_id || data.domain?.startsWith("skill:")) && (() => {
+        const skillSlug = data.domain.replace("skill:", "");
+        return (
         <aside class="mt-10 rounded-lg border border-parchment-300 bg-parchment-100 p-5 dark:border-ink-600 dark:bg-ink-800/60">
           <div class="mb-2 flex items-center gap-2">
             <svg class="h-4 w-4 text-falun-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -108,17 +110,38 @@ const confidenceColor =
             </svg>
             <span class="font-mono text-xs font-semibold uppercase tracking-wider text-falun-600 dark:text-falun-400">Use this skill</span>
           </div>
-          <p class="mb-3 text-sm text-ink-600 dark:text-parchment-400">Install this skill in your agent or tool pipeline:</p>
-          <div class="space-y-2">
+
+          {/* Option 1: Claude Code */}
+          <div class="mb-4">
+            <p class="mb-1.5 text-xs font-semibold uppercase tracking-wider text-ink-500 dark:text-parchment-500">Option 1 — Claude Code slash command</p>
+            <p class="mb-2 text-sm text-ink-600 dark:text-parchment-400">Best when you're already in a Claude Code session and want to invoke the skill inline.</p>
             <div class="rounded-md bg-ink-900 px-4 py-3 font-mono text-sm text-parchment-200">
-              <span class="select-none text-ink-500">$ </span>brunnr install {data.domain.replace("skill:", "")}
+              <span class="select-none text-ink-500">/ </span>{skillSlug}
             </div>
-            <p class="text-xs text-ink-400 dark:text-parchment-600">
-              Or copy the skill definition directly from the <a href={`https://github.com/Peleke/brunnr/tree/main/skills/${data.domain.replace("skill:", "")}`} class="text-falun-600 underline decoration-falun-300 underline-offset-2 hover:decoration-falun-500 dark:text-falun-400 dark:decoration-falun-700 dark:hover:decoration-falun-400">source repository</a>.
+            <p class="mt-1.5 text-xs text-ink-400 dark:text-parchment-600">
+              Register the <a href={`https://github.com/Peleke/brunnr/tree/main/skills/${skillSlug}`} class="text-falun-600 underline decoration-falun-300 underline-offset-2 hover:decoration-falun-500 dark:text-falun-400 dark:decoration-falun-700 dark:hover:decoration-falun-400">skill directory</a> as a Claude Code custom slash command. See <a href="https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/tutorials#create-custom-slash-commands" class="text-falun-600 underline decoration-falun-300 underline-offset-2 hover:decoration-falun-500 dark:text-falun-400 dark:decoration-falun-700 dark:hover:decoration-falun-400">custom slash commands</a> for setup.
+            </p>
+          </div>
+
+          {/* Option 2: brunnr CLI */}
+          <div>
+            <p class="mb-1.5 text-xs font-semibold uppercase tracking-wider text-ink-500 dark:text-parchment-500">Option 2 — brunnr CLI</p>
+            <p class="mb-2 text-sm text-ink-600 dark:text-parchment-400">Best for batch installs, CI pipelines, or managing skills across multiple projects.</p>
+            <div class="space-y-1.5">
+              <div class="rounded-md bg-ink-900 px-4 py-3 font-mono text-sm text-parchment-200">
+                <span class="select-none text-ink-500">$ </span>pip install brunnr
+              </div>
+              <div class="rounded-md bg-ink-900 px-4 py-3 font-mono text-sm text-parchment-200">
+                <span class="select-none text-ink-500">$ </span>brunnr install {skillSlug}
+              </div>
+            </div>
+            <p class="mt-1.5 text-xs text-ink-400 dark:text-parchment-600">
+              Installs the skill to <code class="rounded bg-ink-800 px-1 py-0.5 text-parchment-300">./skills/{skillSlug}/SKILL.md</code> in your project. By default, brunnr shows you the skill source for review before writing — use <code class="rounded bg-ink-800 px-1 py-0.5 text-parchment-300">--yes</code> to skip.
             </p>
           </div>
         </aside>
-      )}
+        );
+      })()}
     </article>
   </div>
 </Base>
