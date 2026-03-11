@@ -1,4 +1,5 @@
 ---
+import { marked } from "marked";
 import TypeBadge from "./TypeBadge.astro";
 
 interface Props {
@@ -12,20 +13,43 @@ interface Props {
 }
 
 const { slug, id, type, claim, domain, confidence, tags } = Astro.props;
+const claimHtml = await marked.parse(claim, { breaks: true });
+
+const accentBar = {
+  skill: "bg-falun-500 dark:bg-falun-600",
+  pattern: "bg-parchment-500 dark:bg-parchment-600",
+  learning: "bg-ink-400 dark:bg-ink-500",
+};
 ---
 
-<a href={`/entry/${slug.replace(/\.mdx?$/, "")}`} class="block rounded-lg border border-gray-200 bg-white p-5 transition hover:border-gray-300 hover:shadow-sm">
-  <div class="mb-2 flex items-center gap-2">
-    <TypeBadge type={type} />
-    <span class="text-xs text-gray-400">{domain}</span>
-    <span class="ml-auto text-xs text-gray-400">{(confidence * 100).toFixed(0)}%</span>
-  </div>
-  <p class="text-sm leading-relaxed text-gray-700">{claim}</p>
-  {tags && tags.length > 0 && (
-    <div class="mt-3 flex flex-wrap gap-1">
-      {tags.map((tag) => (
-        <span class="rounded bg-gray-100 px-1.5 py-0.5 text-xs text-gray-500">{tag}</span>
-      ))}
+<a
+  href={`/entry/${slug.replace(/\.mdx?$/, "")}`}
+  class="group block rounded-lg border border-parchment-300 bg-white shadow-card transition-all duration-200 hover:shadow-card-hover hover:-translate-y-0.5 dark:border-ink-700 dark:bg-ink-800"
+  data-type={type}
+  data-domain={domain}
+  data-confidence={confidence}
+>
+  <!-- Accent bar -->
+  <div class={`h-1 rounded-t-lg ${accentBar[type]}`}></div>
+
+  <div class="p-5">
+    <!-- Header row -->
+    <div class="mb-3 flex items-center gap-2">
+      <TypeBadge type={type} />
+      <span class="font-mono text-xs text-ink-400 dark:text-parchment-600">{domain}</span>
+      <span class="ml-auto font-mono text-xs text-ink-400 dark:text-parchment-600">{(confidence * 100).toFixed(0)}%</span>
     </div>
-  )}
+
+    <!-- Claim -->
+    <div class="prose-norse font-serif text-sm leading-relaxed text-ink-700 dark:text-parchment-300" set:html={claimHtml} />
+
+    <!-- Tags -->
+    {tags && tags.length > 0 && (
+      <div class="mt-3 flex flex-wrap gap-1.5">
+        {tags.map((tag) => (
+          <span class="rounded-md bg-parchment-200 px-2 py-0.5 font-mono text-xs text-ink-500 dark:bg-ink-700 dark:text-parchment-500">{tag}</span>
+        ))}
+      </div>
+    )}
+  </div>
 </a>

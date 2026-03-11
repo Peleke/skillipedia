@@ -1,4 +1,5 @@
 ---
+import { marked } from "marked";
 import { getCollection, render } from "astro:content";
 import Base from "../../layouts/Base.astro";
 import TypeBadge from "../../components/TypeBadge.astro";
@@ -14,59 +15,98 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 const { data } = entry;
+
+const claimHtml = await marked.parse(data.claim, { breaks: true });
+
+const confidenceColor =
+  data.confidence >= 0.8
+    ? "text-falun-600 dark:text-falun-400"
+    : data.confidence >= 0.5
+      ? "text-parchment-700 dark:text-parchment-400"
+      : "text-ink-400 dark:text-parchment-600";
 ---
 
 <Base title={`${data.id} — Skillipedia`}>
-  <div class="lg:flex lg:gap-8">
+  <!-- Back link -->
+  <a href="/" class="inline-flex items-center gap-1.5 mb-6 font-mono text-sm text-ink-400 hover:text-falun-600 dark:text-parchment-500 dark:hover:text-falun-400 transition-colors">
+    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+    </svg>
+    Back to entries
+  </a>
+
+  <div class="lg:flex lg:gap-10 animate-fade-up">
     <!-- Sidebar -->
-    <aside class="mb-6 shrink-0 lg:mb-0 lg:w-64">
-      <div class="rounded-lg border border-gray-200 bg-white p-5">
-        <div class="mb-3">
+    <aside class="mb-8 shrink-0 lg:mb-0 lg:w-72">
+      <div class="rounded-lg border border-parchment-300 bg-white p-6 shadow-card dark:border-ink-700 dark:bg-ink-800">
+        <div class="mb-4">
           <TypeBadge type={data.type} />
         </div>
-        <dl class="space-y-3 text-sm">
+        <dl class="space-y-4 text-sm">
           <div>
-            <dt class="font-medium text-gray-500">Domain</dt>
-            <dd class="text-gray-900">{data.domain}</dd>
+            <dt class="font-mono text-xs uppercase tracking-wider text-ink-400 dark:text-parchment-600">Domain</dt>
+            <dd class="mt-0.5 font-medium text-ink-800 dark:text-parchment-200">{data.domain}</dd>
           </div>
           <div>
-            <dt class="font-medium text-gray-500">Confidence</dt>
-            <dd class="text-gray-900">{(data.confidence * 100).toFixed(0)}%</dd>
+            <dt class="font-mono text-xs uppercase tracking-wider text-ink-400 dark:text-parchment-600">Confidence</dt>
+            <dd class={`mt-0.5 font-mono font-semibold ${confidenceColor}`}>{(data.confidence * 100).toFixed(0)}%</dd>
           </div>
           <div>
-            <dt class="font-medium text-gray-500">Derivation</dt>
-            <dd class="text-gray-900">{data.derivation}</dd>
+            <dt class="font-mono text-xs uppercase tracking-wider text-ink-400 dark:text-parchment-600">Derivation</dt>
+            <dd class="mt-0.5 font-medium text-ink-800 dark:text-parchment-200">{data.derivation}</dd>
           </div>
           <div>
-            <dt class="font-medium text-gray-500">Category</dt>
-            <dd class="text-gray-900">{data.category}</dd>
+            <dt class="font-mono text-xs uppercase tracking-wider text-ink-400 dark:text-parchment-600">Category</dt>
+            <dd class="mt-0.5 font-medium text-ink-800 dark:text-parchment-200">{data.category}</dd>
           </div>
           {data.tags && data.tags.length > 0 && (
             <div>
-              <dt class="font-medium text-gray-500">Tags</dt>
-              <dd class="flex flex-wrap gap-1 mt-1">
+              <dt class="font-mono text-xs uppercase tracking-wider text-ink-400 dark:text-parchment-600">Tags</dt>
+              <dd class="mt-1.5 flex flex-wrap gap-1.5">
                 {data.tags.map((tag) => (
-                  <span class="rounded bg-gray-100 px-1.5 py-0.5 text-xs text-gray-600">{tag}</span>
+                  <span class="rounded-md bg-parchment-200 px-2 py-0.5 font-mono text-xs text-ink-500 dark:bg-ink-700 dark:text-parchment-500">{tag}</span>
                 ))}
               </dd>
             </div>
           )}
           <div>
-            <dt class="font-medium text-gray-500">Source</dt>
-            <dd class="text-gray-900">{data.provenance.source_id || data.provenance.domain || "—"}</dd>
+            <dt class="font-mono text-xs uppercase tracking-wider text-ink-400 dark:text-parchment-600">Source</dt>
+            <dd class="mt-0.5 font-medium text-ink-800 dark:text-parchment-200">{data.provenance.source_id || data.provenance.domain || "\u2014"}</dd>
           </div>
           <div>
-            <dt class="font-medium text-gray-500">Source Concepts</dt>
-            <dd class="text-gray-900">{data.source_concepts.join(", ")}</dd>
+            <dt class="font-mono text-xs uppercase tracking-wider text-ink-400 dark:text-parchment-600">Source Concepts</dt>
+            <dd class="mt-0.5 font-medium text-ink-800 dark:text-parchment-200">{data.source_concepts.join(", ")}</dd>
           </div>
         </dl>
       </div>
     </aside>
 
     <!-- Content -->
-    <article class="prose prose-gray max-w-none flex-1">
-      <p class="lead text-lg text-gray-600">{data.claim}</p>
+    <article class="prose-norse flex-1 text-ink-700 dark:text-parchment-300">
+      <div class="mb-6 font-serif text-xl leading-relaxed text-ink-600 dark:text-parchment-300" set:html={claimHtml} />
+      <hr class="mb-6 border-parchment-300 dark:border-ink-700" />
       <Content />
+
+      {/* Install instructions */}
+      {data.type === "skill" && (data.metadata?.source_id || data.domain?.startsWith("skill:")) && (
+        <aside class="mt-10 rounded-lg border border-parchment-300 bg-parchment-100 p-5 dark:border-ink-600 dark:bg-ink-800/60">
+          <div class="mb-2 flex items-center gap-2">
+            <svg class="h-4 w-4 text-falun-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span class="font-mono text-xs font-semibold uppercase tracking-wider text-falun-600 dark:text-falun-400">Use this skill</span>
+          </div>
+          <p class="mb-3 text-sm text-ink-600 dark:text-parchment-400">Install this skill in your agent or tool pipeline:</p>
+          <div class="space-y-2">
+            <div class="rounded-md bg-ink-900 px-4 py-3 font-mono text-sm text-parchment-200">
+              <span class="select-none text-ink-500">$ </span>brunnr install {data.domain.replace("skill:", "")}
+            </div>
+            <p class="text-xs text-ink-400 dark:text-parchment-600">
+              Or copy the skill definition directly from the <a href={`https://github.com/Peleke/brunnr/tree/main/skills/${data.domain.replace("skill:", "")}`} class="text-falun-600 underline decoration-falun-300 underline-offset-2 hover:decoration-falun-500 dark:text-falun-400 dark:decoration-falun-700 dark:hover:decoration-falun-400">source repository</a>.
+            </p>
+          </div>
+        </aside>
+      )}
     </article>
   </div>
 </Base>

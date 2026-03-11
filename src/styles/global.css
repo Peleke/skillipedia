@@ -3,7 +3,132 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    font-size: 17px;
+    scroll-behavior: smooth;
+  }
+
+  /* Light mode (default) */
   body {
-    @apply bg-gray-50 text-gray-900 antialiased;
+    @apply bg-parchment-50 text-ink-800 font-sans antialiased;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  /* Dark mode */
+  .dark body {
+    @apply bg-ink-900 text-parchment-200;
+  }
+
+  /* Headings — serif */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+
+  /* Links */
+  a {
+    transition: color 0.15s ease;
+  }
+
+  /* Selection */
+  ::selection {
+    @apply bg-falun-200 text-falun-900;
+  }
+  .dark ::selection {
+    @apply bg-falun-800 text-falun-100;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-parchment-100;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-parchment-400 rounded-full;
+  }
+  .dark ::-webkit-scrollbar-track {
+    @apply bg-ink-800;
+  }
+  .dark ::-webkit-scrollbar-thumb {
+    @apply bg-ink-600 rounded-full;
+  }
+}
+
+@layer components {
+  /* Prose styling for entry content */
+  .prose-norse {
+    @apply font-serif text-base leading-relaxed;
+  }
+  .prose-norse h1,
+  .prose-norse h2,
+  .prose-norse h3 {
+    @apply font-serif font-bold tracking-tight;
+  }
+  .prose-norse h1 {
+    @apply text-3xl mt-8 mb-4;
+  }
+  .prose-norse h2 {
+    @apply text-2xl mt-6 mb-3;
+  }
+  .prose-norse h3 {
+    @apply text-xl mt-5 mb-2;
+  }
+  .prose-norse p {
+    @apply mb-4;
+  }
+  .prose-norse ul, .prose-norse ol {
+    @apply mb-4 pl-6;
+  }
+  .prose-norse ul {
+    @apply list-disc;
+  }
+  .prose-norse ol {
+    @apply list-decimal;
+  }
+  .prose-norse li {
+    @apply mb-1;
+  }
+  .prose-norse blockquote {
+    @apply border-l-4 border-falun-400 pl-4 italic my-4 text-ink-500;
+  }
+  .dark .prose-norse blockquote {
+    @apply border-falun-600 text-parchment-400;
+  }
+  .prose-norse code {
+    @apply font-mono text-sm bg-parchment-200 px-1.5 py-0.5 rounded;
+  }
+  .dark .prose-norse code {
+    @apply bg-ink-700;
+  }
+  .prose-norse pre {
+    @apply bg-ink-900 text-parchment-200 rounded-lg p-4 overflow-x-auto my-4;
+  }
+  .prose-norse pre code {
+    @apply bg-transparent p-0;
+  }
+  .prose-norse a {
+    @apply text-falun-600 underline decoration-falun-300 underline-offset-2 hover:decoration-falun-500;
+  }
+  .dark .prose-norse a {
+    @apply text-falun-300 decoration-falun-700 hover:decoration-falun-400;
+  }
+  .prose-norse strong {
+    @apply font-bold;
+  }
+  .prose-norse table {
+    @apply w-full border-collapse my-4 text-sm;
+  }
+  .prose-norse th {
+    @apply text-left font-semibold border-b-2 border-parchment-300 pb-2 pr-4;
+  }
+  .dark .prose-norse th {
+    @apply border-ink-600;
+  }
+  .prose-norse td {
+    @apply border-b border-parchment-200 py-2 pr-4;
+  }
+  .dark .prose-norse td {
+    @apply border-ink-700;
   }
 }

@@ -5,13 +5,13 @@ interface Props {
 
 const { type } = Astro.props;
 
-const colors = {
-  skill: "bg-blue-100 text-blue-800",
-  pattern: "bg-purple-100 text-purple-800",
-  learning: "bg-green-100 text-green-800",
+const styles = {
+  skill: "bg-falun-100 text-falun-700 dark:bg-falun-900/40 dark:text-falun-300",
+  pattern: "bg-parchment-300 text-parchment-800 dark:bg-parchment-900/40 dark:text-parchment-400",
+  learning: "bg-ink-100 text-ink-600 dark:bg-ink-700/50 dark:text-ink-200",
 };
 ---
 
-<span class={`inline-block rounded-full px-2.5 py-0.5 text-xs font-medium ${colors[type]}`}>
+<span class={`inline-block rounded-full px-2.5 py-0.5 text-xs font-mono font-medium uppercase tracking-wider ${styles[type]}`}>
   {type}
 </span>

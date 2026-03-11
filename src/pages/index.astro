@@ -10,23 +10,49 @@ const domains = [...new Set(entries.map((e) => e.data.domain))].sort();
 ---
 
 <Base title="Skillipedia — Wikipedia for Agents">
-  <div class="mb-8">
-    <h1 class="text-3xl font-bold">Knowledge Base</h1>
-    <p class="mt-2 text-gray-500">{entries.length} entries across {domains.length} domains</p>
-  </div>
+  <!-- Hero -->
+  <section class="mb-10 animate-fade-up">
+    <h1 class="text-4xl font-bold tracking-tight text-ink-900 dark:text-parchment-50 sm:text-5xl">
+      Knowledge Base
+    </h1>
+    <p class="mt-3 max-w-2xl text-lg text-ink-500 dark:text-parchment-400">
+      {entries.length} entries across {domains.length} domains — skills, patterns, and learnings extracted from agent workflows.
+    </p>
+  </section>
 
-  <div class="mb-6 flex gap-2">
-    {types.map((t) => {
-      const count = entries.filter((e) => e.data.type === t).length;
-      return (
-        <span class="text-sm text-gray-500">
-          <TypeBadge type={t} /> {count}
-        </span>
-      );
-    })}
-  </div>
+  <!-- Filters -->
+  <section class="mb-8 flex flex-wrap items-center gap-3" id="filters">
+    <!-- Type filters -->
+    <div class="flex gap-2">
+      <button
+        data-filter-type="all"
+        class="filter-btn active rounded-full border border-parchment-300 px-3 py-1.5 font-mono text-xs font-medium text-ink-600 transition-colors hover:border-falun-400 hover:text-falun-600 dark:border-ink-600 dark:text-parchment-400 dark:hover:border-falun-500 dark:hover:text-falun-400"
+      >All</button>
+      {types.map((t) => {
+        const count = entries.filter((e) => e.data.type === t).length;
+        return (
+          <button
+            data-filter-type={t}
+            class="filter-btn rounded-full border border-parchment-300 px-3 py-1.5 font-mono text-xs font-medium text-ink-600 transition-colors hover:border-falun-400 hover:text-falun-600 dark:border-ink-600 dark:text-parchment-400 dark:hover:border-falun-500 dark:hover:text-falun-400"
+          >
+            {t} <span class="text-ink-400 dark:text-parchment-600">{count}</span>
+          </button>
+        );
+      })}
+    </div>
 
-  <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <!-- Domain filter -->
+    <select
+      id="domain-filter"
+      class="rounded-lg border border-parchment-300 bg-white px-3 py-1.5 font-mono text-xs text-ink-600 transition-colors focus:border-falun-400 focus:outline-none dark:border-ink-600 dark:bg-ink-800 dark:text-parchment-400"
+    >
+      <option value="all">All domains</option>
+      {domains.map((d) => <option value={d}>{d}</option>)}
+    </select>
+  </section>
+
+  <!-- Grid -->
+  <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" id="entries-grid">
     {entries
       .sort((a, b) => b.data.confidence - a.data.confidence)
       .map((entry) => (
@@ -41,4 +67,55 @@ const domains = [...new Set(entries.map((e) => e.data.domain))].sort();
         />
       ))}
   </div>
+
+  <!-- Empty state -->
+  <div id="empty-state" class="hidden py-16 text-center">
+    <p class="font-serif text-lg text-ink-400 dark:text-parchment-600">No entries match the current filters.</p>
+  </div>
+
+  <!-- Filter script -->
+  <script is:inline>
+    (function() {
+      const grid = document.getElementById("entries-grid");
+      const cards = grid.querySelectorAll("[data-type]");
+      const filterBtns = document.querySelectorAll(".filter-btn");
+      const domainSelect = document.getElementById("domain-filter");
+      const emptyState = document.getElementById("empty-state");
+
+      let activeType = "all";
+      let activeDomain = "all";
+
+      function applyFilters() {
+        let visible = 0;
+        cards.forEach((card) => {
+          const matchType = activeType === "all" || card.dataset.type === activeType;
+          const matchDomain = activeDomain === "all" || card.dataset.domain === activeDomain;
+          if (matchType && matchDomain) {
+            card.style.display = "";
+            visible++;
+          } else {
+            card.style.display = "none";
+          }
+        });
+        emptyState.classList.toggle("hidden", visible > 0);
+      }
+
+      filterBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          filterBtns.forEach((b) => b.classList.remove("active", "border-falun-500", "text-falun-600", "dark:border-falun-400", "dark:text-falun-300"));
+          btn.classList.add("active", "border-falun-500", "text-falun-600", "dark:border-falun-400", "dark:text-falun-300");
+          activeType = btn.dataset.filterType;
+          applyFilters();
+        });
+      });
+
+      domainSelect.addEventListener("change", () => {
+        activeDomain = domainSelect.value;
+        applyFilters();
+      });
+
+      // Set initial active state
+      filterBtns[0].classList.add("border-falun-500", "text-falun-600", "dark:border-falun-400", "dark:text-falun-300");
+    })();
+  </script>
 </Base>
