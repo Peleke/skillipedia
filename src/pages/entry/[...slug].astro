@@ -162,15 +162,29 @@ const confidenceColor =
               </div>
               <p class="mt-1 text-sm text-ink-600 dark:text-parchment-400">Best for batch installs, CI pipelines, or managing skills across multiple projects.</p>
             </summary>
-            <div class="mt-3 space-y-1.5">
-              <div class="rounded-md bg-ink-900 px-4 py-3 font-mono text-sm text-parchment-200">
-                <span class="select-none text-ink-500">$ </span>pip install brunnr
+            <div class="mt-3 space-y-3">
+              <div>
+                <p class="mb-1 text-xs font-medium text-ink-500 dark:text-parchment-500">Install brunnr (one-time):</p>
+                <div class="space-y-1">
+                  <div class="rounded-md bg-ink-900 px-4 py-3 font-mono text-sm text-parchment-200">
+                    <span class="select-none text-ink-500">$ </span>uv tool install brunnr <span class="text-ink-500 select-none ml-2"># recommended</span>
+                  </div>
+                  <div class="rounded-md bg-ink-900/70 px-4 py-2.5 font-mono text-xs text-parchment-400">
+                    <span class="select-none text-ink-500">$ </span>pipx install brunnr <span class="text-ink-500 select-none ml-2"># or pipx</span>
+                  </div>
+                  <div class="rounded-md bg-ink-900/70 px-4 py-2.5 font-mono text-xs text-parchment-400">
+                    <span class="select-none text-ink-500">$ </span>pip install brunnr <span class="text-ink-500 select-none ml-2"># or pip</span>
+                  </div>
+                </div>
               </div>
-              <div class="rounded-md bg-ink-900 px-4 py-3 font-mono text-sm text-parchment-200">
-                <span class="select-none text-ink-500">$ </span>brunnr install {skillSlug}
+              <div>
+                <p class="mb-1 text-xs font-medium text-ink-500 dark:text-parchment-500">Install the skill:</p>
+                <div class="rounded-md bg-ink-900 px-4 py-3 font-mono text-sm text-parchment-200">
+                  <span class="select-none text-ink-500">$ </span>brunnr install {skillSlug}
+                </div>
               </div>
-              <p class="mt-1.5 text-xs text-ink-400 dark:text-parchment-600">
-                Installs to <code class="rounded bg-ink-800 px-1 py-0.5 text-parchment-300">./skills/{skillSlug}/SKILL.md</code> in your project. By default, brunnr shows you the skill source for review before writing — use <code class="rounded bg-ink-800 px-1 py-0.5 text-parchment-300">--yes</code> to skip.
+              <p class="text-xs text-ink-400 dark:text-parchment-600">
+                Writes to <code class="rounded bg-ink-800 px-1 py-0.5 text-parchment-300">./skills/{skillSlug}/SKILL.md</code> in your project — Claude Code auto-discovers it as a slash command. brunnr shows you the skill source for review before writing; use <code class="rounded bg-ink-800 px-1 py-0.5 text-parchment-300">--yes</code> to skip.
               </p>
             </div>
           </details>
