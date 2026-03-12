@@ -112,53 +112,68 @@ const confidenceColor =
           </div>
 
           {/* Option 1: Claude Code Plugin Marketplace */}
-          <div class="mb-5">
-            <p class="mb-1.5 text-xs font-semibold uppercase tracking-wider text-ink-500 dark:text-parchment-500">Option 1 — Claude Code plugin marketplace</p>
-            <p class="mb-2 text-sm text-ink-600 dark:text-parchment-400">Install directly from within Claude Code. Best for interactive use.</p>
+          <details class="group mb-4" open>
+            <summary class="cursor-pointer list-none">
+              <div class="flex items-center justify-between">
+                <p class="text-xs font-semibold uppercase tracking-wider text-ink-500 dark:text-parchment-500">Option 1 — Claude Code plugin marketplace</p>
+                <svg class="h-4 w-4 text-ink-400 transition-transform group-open:rotate-180 dark:text-parchment-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+              <p class="mt-1 text-sm text-ink-600 dark:text-parchment-400">Install directly from within Claude Code. Best for interactive use.</p>
+            </summary>
+            <div class="mt-3">
+              <p class="mb-1 text-xs font-medium text-ink-500 dark:text-parchment-500">Step 1 — Add the brunnr marketplace (one-time):</p>
+              <div class="rounded-md bg-ink-900 px-4 py-3 font-mono text-sm text-parchment-200">
+                <span class="select-none text-ink-500">/ </span>plugin marketplace add Peleke/brunnr
+              </div>
 
-            <p class="mt-2 mb-1 text-xs font-medium text-ink-500 dark:text-parchment-500">Step 1 — Add the brunnr marketplace (one-time):</p>
-            <div class="rounded-md bg-ink-900 px-4 py-3 font-mono text-sm text-parchment-200">
-              <span class="select-none text-ink-500">/ </span>plugin marketplace add Peleke/brunnr
+              <p class="mt-3 mb-1 text-xs font-medium text-ink-500 dark:text-parchment-500">Step 2 — Install the skill:</p>
+              <div class="rounded-md bg-ink-900 px-4 py-3 font-mono text-sm text-parchment-200">
+                <span class="select-none text-ink-500">/ </span>plugin install {skillSlug}@brunnr-skills
+              </div>
+
+              <p class="mt-3 mb-1 text-xs font-medium text-ink-500 dark:text-parchment-500">Step 3 — Use it:</p>
+              <div class="rounded-md bg-ink-900 px-4 py-3 font-mono text-sm text-parchment-200">
+                <span class="select-none text-ink-500">/ </span>{skillSlug}
+              </div>
+
+              <p class="mt-2 text-xs text-ink-400 dark:text-parchment-600">
+                Every skill in the brunnr marketplace passes a <a href="https://peleke.github.io/brunnr/security/threat-classes/" class="text-falun-600 underline decoration-falun-300 underline-offset-2 hover:decoration-falun-500 dark:text-falun-400 dark:decoration-falun-700 dark:hover:decoration-falun-400">7-class security scan</a> before distribution. See <a href="https://code.claude.com/docs/en/discover-plugins#add-marketplaces" class="text-falun-600 underline decoration-falun-300 underline-offset-2 hover:decoration-falun-500 dark:text-falun-400 dark:decoration-falun-700 dark:hover:decoration-falun-400">Claude Code plugin docs</a> for more on marketplaces.
+              </p>
             </div>
-
-            <p class="mt-3 mb-1 text-xs font-medium text-ink-500 dark:text-parchment-500">Step 2 — Install the skill:</p>
-            <div class="rounded-md bg-ink-900 px-4 py-3 font-mono text-sm text-parchment-200">
-              <span class="select-none text-ink-500">/ </span>plugin install {skillSlug}@brunnr-skills
-            </div>
-
-            <p class="mt-3 mb-1 text-xs font-medium text-ink-500 dark:text-parchment-500">Step 3 — Use it:</p>
-            <div class="rounded-md bg-ink-900 px-4 py-3 font-mono text-sm text-parchment-200">
-              <span class="select-none text-ink-500">/ </span>{skillSlug}
-            </div>
-
-            <p class="mt-2 text-xs text-ink-400 dark:text-parchment-600">
-              Every skill in the brunnr marketplace passes a <a href="https://peleke.github.io/brunnr/security/threat-classes/" class="text-falun-600 underline decoration-falun-300 underline-offset-2 hover:decoration-falun-500 dark:text-falun-400 dark:decoration-falun-700 dark:hover:decoration-falun-400">7-class security scan</a> before distribution. See <a href="https://code.claude.com/docs/en/discover-plugins#add-marketplaces" class="text-falun-600 underline decoration-falun-300 underline-offset-2 hover:decoration-falun-500 dark:text-falun-400 dark:decoration-falun-700 dark:hover:decoration-falun-400">Claude Code plugin docs</a> for more on marketplaces.
-            </p>
-          </div>
+          </details>
 
           {/* Divider */}
-          <div class="mb-5 flex items-center gap-3">
+          <div class="my-4 flex items-center gap-3">
             <div class="h-px flex-1 bg-parchment-300 dark:bg-ink-600"></div>
             <span class="text-xs font-mono text-ink-400 dark:text-parchment-600">or</span>
             <div class="h-px flex-1 bg-parchment-300 dark:bg-ink-600"></div>
           </div>
 
           {/* Option 2: brunnr CLI */}
-          <div>
-            <p class="mb-1.5 text-xs font-semibold uppercase tracking-wider text-ink-500 dark:text-parchment-500">Option 2 — brunnr CLI</p>
-            <p class="mb-2 text-sm text-ink-600 dark:text-parchment-400">Best for batch installs, CI pipelines, or managing skills across multiple projects.</p>
-            <div class="space-y-1.5">
+          <details class="group">
+            <summary class="cursor-pointer list-none">
+              <div class="flex items-center justify-between">
+                <p class="text-xs font-semibold uppercase tracking-wider text-ink-500 dark:text-parchment-500">Option 2 — brunnr CLI</p>
+                <svg class="h-4 w-4 text-ink-400 transition-transform group-open:rotate-180 dark:text-parchment-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+              <p class="mt-1 text-sm text-ink-600 dark:text-parchment-400">Best for batch installs, CI pipelines, or managing skills across multiple projects.</p>
+            </summary>
+            <div class="mt-3 space-y-1.5">
               <div class="rounded-md bg-ink-900 px-4 py-3 font-mono text-sm text-parchment-200">
                 <span class="select-none text-ink-500">$ </span>pip install brunnr
               </div>
               <div class="rounded-md bg-ink-900 px-4 py-3 font-mono text-sm text-parchment-200">
                 <span class="select-none text-ink-500">$ </span>brunnr install {skillSlug}
               </div>
+              <p class="mt-1.5 text-xs text-ink-400 dark:text-parchment-600">
+                Installs to <code class="rounded bg-ink-800 px-1 py-0.5 text-parchment-300">./skills/{skillSlug}/SKILL.md</code> in your project. By default, brunnr shows you the skill source for review before writing — use <code class="rounded bg-ink-800 px-1 py-0.5 text-parchment-300">--yes</code> to skip.
+              </p>
             </div>
-            <p class="mt-1.5 text-xs text-ink-400 dark:text-parchment-600">
-              Installs to <code class="rounded bg-ink-800 px-1 py-0.5 text-parchment-300">./skills/{skillSlug}/SKILL.md</code> in your project. By default, brunnr shows you the skill source for review before writing — use <code class="rounded bg-ink-800 px-1 py-0.5 text-parchment-300">--yes</code> to skip.
-            </p>
-          </div>
+          </details>
         </aside>
         );
       })()}
