@@ -1,0 +1,70 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import TypeBadge from "../../components/TypeBadge.astro";
+
+const entries = await getCollection("entries");
+const domainMap = new Map<string, typeof entries>();
+for (const entry of entries) {
+  const list = domainMap.get(entry.data.domain) || [];
+  list.push(entry);
+  domainMap.set(entry.data.domain, list);
+}
+const domains = [...domainMap.entries()].sort((a, b) => b[1].length - a[1].length);
+
+const domainDescriptions: Record<string, string> = {
+  "security": "How to not get owned. Scanning, reviewing, and catching the things your CI pipeline pretends don't exist.",
+  "resilience": "What happens when the third-party API you depend on decides today is its day off. Spoiler: your code handles it badly.",
+  "testing": "The ongoing war between coverage metrics and tests that actually prove something. Coverage is winning. It shouldn't be.",
+  "skill:ax-rubric": "Tool descriptions that agents can actually parse. Because 'returns relevant results' tells an agent exactly nothing.",
+};
+
+function domainSlug(domain: string): string {
+  return domain.replace(/[^a-z0-9]+/gi, "-").replace(/^-|-$/g, "").toLowerCase();
+}
+---
+
+<Base title="Domains — Skillipedia">
+  <section class="mb-10 animate-fade-up">
+    <h1 class="text-4xl font-bold tracking-tight text-ink-900 dark:text-parchment-50 sm:text-5xl">
+      Domains
+    </h1>
+    <p class="mt-3 text-lg text-ink-500 dark:text-parchment-400">
+      {domains.length} domains. Nobody planned these; entries just kept piling up in the same corners.
+    </p>
+  </section>
+
+  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-2">
+    {domains.map(([domain, domainEntries]) => (
+      <a
+        href={`/domains/${domainSlug(domain)}`}
+        class="group block rounded-lg border border-parchment-300 bg-white shadow-card transition-all duration-200 hover:shadow-card-hover hover:-translate-y-0.5 dark:border-ink-700 dark:bg-ink-800"
+      >
+        <div class="h-1 rounded-t-lg bg-falun-500 dark:bg-falun-600" />
+        <div class="p-6">
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="font-serif text-xl font-bold text-ink-900 dark:text-parchment-100 group-hover:text-falun-600 dark:group-hover:text-falun-400 transition-colors">
+              {domain}
+            </h2>
+            <span class="font-mono text-sm text-ink-400 dark:text-parchment-600">
+              {domainEntries.length} {domainEntries.length === 1 ? "entry" : "entries"}
+            </span>
+          </div>
+          {domainDescriptions[domain] && (
+            <p class="text-sm text-ink-500 dark:text-parchment-400 mb-4 leading-relaxed">
+              {domainDescriptions[domain]}
+            </p>
+          )}
+          <div class="flex flex-wrap gap-2">
+            {domainEntries.map((entry) => (
+              <span class="inline-flex items-center gap-1.5 rounded-md bg-parchment-100 px-2 py-1 dark:bg-ink-700/60">
+                <TypeBadge type={entry.data.type} />
+                <span class="font-mono text-xs text-ink-500 dark:text-parchment-500 truncate max-w-[140px]">{entry.data.id}</span>
+              </span>
+            ))}
+          </div>
+        </div>
+      </a>
+    ))}
+  </div>
+</Base>

@@ -1,0 +1,60 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import EntryCard from "../../components/EntryCard.astro";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("entries");
+  const domainMap = new Map<string, typeof entries>();
+  for (const entry of entries) {
+    const list = domainMap.get(entry.data.domain) || [];
+    list.push(entry);
+    domainMap.set(entry.data.domain, list);
+  }
+
+  return [...domainMap.entries()].map(([domain, domainEntries]) => ({
+    params: { slug: domain.replace(/[^a-z0-9]+/gi, "-").replace(/^-|-$/g, "").toLowerCase() },
+    props: { domain, entries: domainEntries },
+  }));
+}
+
+const { domain, entries } = Astro.props;
+const types = [...new Set(entries.map((e: any) => e.data.type))];
+const avgConfidence = entries.reduce((sum: number, e: any) => sum + e.data.confidence, 0) / entries.length;
+---
+
+<Base title={`${domain} — Skillipedia`}>
+  <a href="/domains" class="inline-flex items-center gap-1.5 mb-6 font-mono text-sm text-ink-400 hover:text-falun-600 dark:text-parchment-500 dark:hover:text-falun-400 transition-colors">
+    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+    </svg>
+    All domains
+  </a>
+
+  <section class="mb-10 animate-fade-up">
+    <h1 class="text-4xl font-bold tracking-tight text-ink-900 dark:text-parchment-50 sm:text-5xl">
+      {domain}
+    </h1>
+    <div class="mt-3 flex flex-wrap gap-4 text-sm text-ink-400 dark:text-parchment-500">
+      <span class="font-mono">{entries.length} {entries.length === 1 ? "entry" : "entries"}</span>
+      <span class="font-mono">avg confidence: {(avgConfidence * 100).toFixed(0)}%</span>
+      <span class="font-mono">types: {types.join(", ")}</span>
+    </div>
+  </section>
+
+  <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    {entries
+      .sort((a: any, b: any) => b.data.confidence - a.data.confidence)
+      .map((entry: any) => (
+        <EntryCard
+          slug={entry.id}
+          id={entry.data.id}
+          type={entry.data.type}
+          claim={entry.data.claim}
+          domain={entry.data.domain}
+          confidence={entry.data.confidence}
+          tags={entry.data.tags}
+        />
+      ))}
+  </div>
+</Base>
