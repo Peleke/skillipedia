@@ -1,0 +1,126 @@
+---
+import Base from "../layouts/Base.astro";
+
+const taxonomy = [
+  {
+    type: "skill",
+    label: "Skills",
+    color: "falun",
+    accent: "bg-falun-500 dark:bg-falun-600",
+    border: "border-falun-300 dark:border-falun-700",
+    bg: "bg-falun-50 dark:bg-falun-950/30",
+    description: "A repeatable capability an agent can execute. Concrete, testable, installable. If you can put it in a SKILL.md and an agent can run it without asking what you meant, it's a skill.",
+    example: "ax-rubric scores tool descriptions 0-5 on whether agents will actually call them. It doesn't suggest. It scores, explains, and rewrites.",
+  },
+  {
+    type: "pattern",
+    label: "Patterns",
+    color: "parchment",
+    accent: "bg-parchment-500 dark:bg-parchment-600",
+    border: "border-parchment-400 dark:border-parchment-700",
+    bg: "bg-parchment-100 dark:bg-parchment-950/20",
+    description: "A structural solution that shows up across codebases. Not a library. Not a framework. A shape that works, extracted from code that survived production.",
+    example: "Wrap external API calls in error boundaries with backoff. Not because a blog told you to. Because 3am pages taught you to.",
+  },
+  {
+    type: "learning",
+    label: "Learnings",
+    color: "ink",
+    accent: "bg-ink-400 dark:bg-ink-500",
+    border: "border-ink-300 dark:border-ink-600",
+    bg: "bg-ink-50 dark:bg-ink-800/40",
+    description: "Something we got wrong, then got right, then wrote down so we'd stop getting it wrong again. Learnings have a confidence score because some of them might still be wrong. We're honest like that.",
+    example: "Test fidelity matters more than coverage percentage. We learned this the fun way: 100% coverage, zero caught bugs.",
+  },
+];
+---
+
+<Base title="About — Skillipedia">
+  <section class="mb-10 animate-fade-up">
+    <h1 class="text-4xl font-bold tracking-tight text-ink-900 dark:text-parchment-50 sm:text-5xl">
+      About
+    </h1>
+    <p class="mt-1 text-sm font-mono text-ink-400 dark:text-parchment-500">
+      or: why does this exist and who hurt you
+    </p>
+  </section>
+
+  <section class="mb-12 max-w-3xl animate-fade-up">
+    <div class="space-y-4 text-lg text-ink-600 dark:text-parchment-400 leading-relaxed">
+      <p>
+        Agents forget everything between sessions: you know this.
+        <br /><br />
+        You've re-explained your own codebase to the same model four times this week; you've watched it make the same mistake it made yesterday, with the same confidence, in the same file.
+      </p>
+      <p>
+        Skillipedia is the encyclopedia we built because we got tired of being the memory.
+        <br /><br />
+        Every entry here is something an agent needed to know, forgot, and wasted time re-learning.
+        <br /><br />
+        So we wrote it down in a format agents can actually consume. Because apparently that's our job now.
+      </p>
+      <p>
+        Entries come from <a href="https://github.com/Peleke/brunnr" class="text-falun-600 underline decoration-falun-300 underline-offset-2 hover:decoration-falun-500 dark:text-falun-400 dark:decoration-falun-700 dark:hover:decoration-falun-400">brunnr</a>, a gated skill registry for agent tools. Each one passes a 26-rule security scan before it gets listed here.
+        <br /><br />
+        We're...paranoid like that.
+      </p>
+    </div>
+  </section>
+
+  <!-- Taxonomy -->
+  <section class="mb-12 animate-fade-up">
+    <h2 class="text-2xl font-bold tracking-tight text-ink-900 dark:text-parchment-50 mb-2">
+      Taxonomy
+    </h2>
+    <p class="text-sm text-ink-400 dark:text-parchment-500 mb-8">
+      Three types of entry. Nobody gets in for being theoretically interesting.
+    </p>
+
+    <div class="grid gap-6 sm:grid-cols-1 lg:grid-cols-3">
+      {taxonomy.map((t) => (
+        <div class={`rounded-lg border ${t.border} ${t.bg} overflow-hidden`}>
+          <div class={`h-1.5 ${t.accent}`} />
+          <div class="p-6">
+            <h3 class="font-serif text-xl font-bold text-ink-900 dark:text-parchment-100 mb-3">
+              {t.label}
+            </h3>
+            <p class="text-sm text-ink-600 dark:text-parchment-400 leading-relaxed mb-4">
+              {t.description}
+            </p>
+            <div class="rounded-md bg-ink-900/80 dark:bg-ink-900 px-4 py-3">
+              <p class="font-mono text-xs text-ink-500 dark:text-parchment-600 mb-1">e.g.</p>
+              <p class="text-sm text-parchment-300 leading-relaxed">{t.example}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Domains -->
+  <section class="mb-12 animate-fade-up">
+    <h2 class="text-2xl font-bold tracking-tight text-ink-900 dark:text-parchment-50 mb-2">
+      Domains
+    </h2>
+    <p class="text-sm text-ink-400 dark:text-parchment-500 mb-4">
+      Nobody sat down and designed a taxonomy. Entries show up; if enough of them cluster around the same problem space, that's a domain. We don't name them until they name themselves.
+    </p>
+    <p class="text-sm text-ink-400 dark:text-parchment-500">
+      Browse them on the <a href="/domains" class="text-falun-600 underline decoration-falun-300 underline-offset-2 hover:decoration-falun-500 dark:text-falun-400 dark:decoration-falun-700 dark:hover:decoration-falun-400">domains page</a>.
+    </p>
+  </section>
+
+  <!-- Confidence -->
+  <section class="mb-12 animate-fade-up">
+    <h2 class="text-2xl font-bold tracking-tight text-ink-900 dark:text-parchment-50 mb-2">
+      Confidence scores
+    </h2>
+    <p class="text-sm text-ink-400 dark:text-parchment-500 max-w-2xl">
+      Every entry has a confidence score.
+      <br /><br />
+      It's not how sure we are that it's true: it's how many times it's survived contact with production without someone yelling at us.
+      <br /><br />
+      95% means battle-tested. 75% means it works but we're watching it. Below 50% means we wrote it down before we forgot, and we're not totally sure we were right in the first place.
+    </p>
+  </section>
+</Base>

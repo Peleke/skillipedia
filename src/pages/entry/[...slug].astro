@@ -100,8 +100,8 @@ const confidenceColor =
       <Content />
 
       {/* Install instructions */}
-      {data.type === "skill" && (data.metadata?.source_id || data.domain?.startsWith("skill:")) && (() => {
-        const skillSlug = data.domain.replace("skill:", "");
+      {data.type === "skill" && (() => {
+        const skillSlug = entry.id.replace(/\.mdx?$/, "");
         return (
         <aside class="mt-10 rounded-lg border border-parchment-300 bg-parchment-100 p-5 dark:border-ink-600 dark:bg-ink-800/60">
           <div class="mb-2 flex items-center gap-2">
