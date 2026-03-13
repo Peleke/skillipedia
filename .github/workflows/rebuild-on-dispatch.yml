@@ -1,4 +1,5 @@
 # Rebuild when brunnr pushes skill updates, or on push to main.
+# On dispatch: fetches brunnr skills, syncs MDX entries, commits, builds.
 name: Build Skillipedia
 
 on:
@@ -6,17 +7,42 @@ on:
     types: [brunnr-skills-updated]
   push:
     branches: [main]
+  workflow_dispatch:
 
 jobs:
-  build:
+  sync-and-build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Checkout brunnr skills
+        uses: actions/checkout@v4
+        with:
+          repository: Peleke/brunnr
+          path: _brunnr
+          sparse-checkout: skills
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Sync skill entries from brunnr
+        run: python scripts/sync-from-brunnr.py --brunnr-dir _brunnr --output-dir src/content/entries
+
+      - name: Commit updated entries
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/content/entries/
+          if git diff --cached --quiet; then
+            echo "No entry changes to commit"
+          else
+            git commit -m "chore: sync skill entries from brunnr (${{ github.event.client_payload.sha || 'manual' }})"
+            git push
+          fi
 
       - uses: oven-sh/setup-bun@v2
 
       - run: bun install
 
       - run: bun run build
-        # Vercel handles deploy via its own git integration,
-        # but this ensures the build passes on every push/dispatch.
