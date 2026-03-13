@@ -1,0 +1,63 @@
+---
+id: skill:runlet
+type: skill
+claim: "Turn a braindump into tomorrow's runlist. Classifies tasks by activation energy and configurable impact axis using an ND-adapted matrix. Outputs Obsidian-ready markdown with entry points for high-energy items, carry-forward tracking, and kill reasoning."
+confidence: 0.75
+domain: skill:runlet
+derivation: literal
+tags:
+  - adhd
+  - neurodivergent
+  - productivity
+  - task-management
+  - executive-function
+  - obsidian
+category: skill:runlet
+source_concepts:
+  - skill:runlet
+provenance:
+  id: skill:runlet
+  domain: skill:runlet
+  derivation: literal
+  source_concepts:
+    - skill:runlet
+  confidence: 0.75
+  source_id: skill_md:runlet:a1b2c3d4e5f6
+metadata:
+  source_id: skill_md:runlet:a1b2c3d4e5f6
+  skill_format: canonical
+generated_at: "2026-03-13T20:00:00.000000+00:00"
+---
+
+## Runlet — ND-Adapted Daily Task Compiler
+
+Turn a braindump into tomorrow's runlist. Call at end of session or when the user says 'runlet' / 'braindump' / 'what should I do tomorrow'. Input: unstructured text + optional previous runlist. Output: 4-quadrant Obsidian markdown (~800 tokens) with entry points on high-activation items, carry-forward tags, kill reasoning, and a machine-readable RUNLET_SUMMARY JSON block for agent pings. ND-adapted: classifies by activation energy, not urgency.
+
+## The Matrix
+
+Two axes built for ND cognition, not neurotypical assumptions.
+
+**Axis 1: Energy Cost** — how hard is it to START this task? Not difficulty. Not duration. The activation barrier. Universal across all goals.
+
+**Axis 2: Moves [Focus]** — does this advance the current primary objective within 30 days? Binary. Configurable: Money, Career, Health, Launch, or any user-defined focus.
+
+|              | Low Energy Cost | High Energy Cost |
+|-------------|----------------|-----------------|
+| **Moves [Focus]** | **Do First** — easy to start, payoff is real | **Block Time** — needs ramp-up, but it's the work that pays |
+| **Doesn't Move [Focus]** | **Batch** — low-drag maintenance, do in a clump | **Kill or Delegate** — hard AND doesn't pay? why? |
+
+## Key Features
+
+- **Entry points** on every Block Time item — one sentence describing the smallest physical action to start the task
+- **Carry-forward** — unchecked items from yesterday's runlist carry with tags; 3 carries forces a decision
+- **Kill reasoning** — strikethrough + reason on every killed item (the brain needs closure, not silence)
+- **Focus swap** — change the primary focus mid-day to re-sort without rebuilding
+- **Machine-readable summary** — RUNLET_SUMMARY JSON block for agent pings (morning notification, nightly recap)
+
+## Input
+
+Unstructured text: braindumps, session logs, chat transcripts, scattered thoughts. Optionally: yesterday's runlist for carry-forward. Focus axis and date.
+
+## Output
+
+Obsidian-ready markdown with four quadrants, entry points, batch grouping, kill reasoning, and embedded JSON summary. Review time: 2 minutes or less.
