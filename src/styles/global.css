@@ -59,6 +59,8 @@
   /* Prose styling for entry content */
   .prose-norse {
     @apply font-serif text-base leading-relaxed;
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
   .prose-norse h1,
   .prose-norse h2,
