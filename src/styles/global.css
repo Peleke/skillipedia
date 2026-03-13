@@ -118,6 +118,12 @@
   }
   .prose-norse table {
     @apply w-full border-collapse my-4 text-sm;
+    table-layout: fixed;
+  }
+  .prose-norse td,
+  .prose-norse th {
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
   .prose-norse th {
     @apply text-left font-semibold border-b-2 border-parchment-300 pb-2 pr-4;
