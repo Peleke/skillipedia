@@ -1,35 +1,33 @@
 ---
-id: skill:ax-rubric
+id: "skill:ax-rubric"
 type: skill
-claim: "Score agent-facing tool descriptions against the AX Description Rubric. Takes a tool description, scores it 0-5 on agent discoverability, explains failures, and rewrites it to pass."
+claim: "Score agent-facing tool descriptions against the AX Description Rubric. Takes a tool description, scores it 0-5 on agent discoverability, explains failures, and rewrites it to pass. Use when writing or reviewing MCP tool descriptions, API docs, or skill descriptions."
 confidence: 0.75
-domain: skill:ax-rubric
+domain: "skill:ax-rubric"
 derivation: literal
-tags:
-  - agent-tools
-  - mcp
-  - discoverability
-  - scoring
-category: skill:ax-rubric
+tags: []
+category: "skill:ax-rubric"
 source_concepts:
-  - skill:ax-rubric
+  - "skill:ax-rubric"
 provenance:
-  id: skill:ax-rubric
-  domain: skill:ax-rubric
+  id: "skill:ax-rubric"
+  domain: "skill:ax-rubric"
   derivation: literal
   source_concepts:
-    - skill:ax-rubric
+    - "skill:ax-rubric"
   confidence: 0.75
-  source_id: skill_md:ax-rubric:176d8e11b4fd4b0c
+  source_id: "skill_md:ax-rubric:c72a8d"
 metadata:
-  source_id: skill_md:ax-rubric:176d8e11b4fd4b0c
+  source_id: "skill_md:ax-rubric:c72a8d"
   skill_format: canonical
-generated_at: "2026-03-11T06:48:09.750272+00:00"
+generated_at: "2026-03-13T21:41:19.976862+00:00"
 ---
 
-## AX Description Rubric
+# AX Description Rubric — Tool Description Reviewer
 
-Score agent-facing tool descriptions against the AX Description Rubric. Takes a tool description, scores it 0-5 on agent discoverability, explains failures, and rewrites it to pass. Use when writing or reviewing MCP tool descriptions, API docs, or skill descriptions.
+You are an agent experience (AX) reviewer. Your job: evaluate tool descriptions from the perspective of an autonomous agent deciding whether to call the tool.
+
+Agents run a cost-benefit calculation on every tool description before finishing the first sentence. If the description doesn't clear the bar, the tool is invisible — not rejected, never considered. The description is the only input the agent has.
 
 ## Input
 
@@ -157,3 +155,7 @@ Why it fails: no output shape, no cost signal, no trigger, no specificity, no di
 > "Check for known pitfalls before starting work. Returns 3-5 specific warnings for your tech stack. ~500 tokens. Call once at session start."
 
 Why it works: output shape (3-5 warnings), cost signal (~500 tokens), trigger (session start, once), specificity (pitfalls for your tech stack), differentiation (no other tool says "pitfalls at session start").
+
+## Attribution
+
+Based on the AX Description Rubric from ["I Don't Deliberate About This"](https://peleke.me/writing/ax-04-tool-descriptions) by Peleke Sengstacke and Maren.
