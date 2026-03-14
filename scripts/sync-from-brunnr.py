@@ -27,7 +27,10 @@ _DOMAIN_MARKERS = {
 
 
 def parse_frontmatter(text: str) -> tuple[dict[str, str], str]:
-    """Return (frontmatter_dict, body) from a markdown file with YAML front matter."""
+    """Return (frontmatter_dict, body) from a markdown file with YAML front matter.
+
+    Handles YAML block scalars (> and |) by joining continuation lines.
+    """
     fm: dict[str, str] = {}
     body = text
 
@@ -38,10 +41,25 @@ def parse_frontmatter(text: str) -> tuple[dict[str, str], str]:
     raw = match.group(1)
     body = text[match.end() :]
 
-    for line in raw.splitlines():
-        m = re.match(r"^([a-z_]+)\s*:\s*(.+)$", line)
+    lines = raw.splitlines()
+    i = 0
+    while i < len(lines):
+        m = re.match(r"^([a-z_]+)\s*:\s*(.+)$", lines[i])
         if m:
-            fm[m.group(1)] = m.group(2).strip().strip('"').strip("'")
+            key = m.group(1)
+            val = m.group(2).strip().strip('"').strip("'")
+            # Handle YAML fold (>) and literal (|) block scalars
+            if val in (">", "|", ">-", "|-"):
+                continuation = []
+                i += 1
+                while i < len(lines) and (lines[i].startswith("  ") or lines[i].strip() == ""):
+                    continuation.append(lines[i].strip())
+                    i += 1
+                fm[key] = " ".join(part for part in continuation if part)
+                continue
+            else:
+                fm[key] = val
+        i += 1
 
     return fm, body
 
