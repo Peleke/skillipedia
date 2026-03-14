@@ -79,12 +79,35 @@ def extract_tags(fm: dict[str, str], body: str) -> list[str]:
     return tags
 
 
+def _escape_mdx_body(body: str) -> str:
+    """Escape characters in markdown body that break MDX compilation.
+
+    MDX treats bare < as JSX tag openers. Escape < that appear outside of
+    fenced code blocks (``` ... ```) to prevent build failures.
+    """
+    parts = re.split(r"(```[\s\S]*?```)", body)
+    escaped = []
+    for i, part in enumerate(parts):
+        if i % 2 == 1:
+            # Inside a code fence — leave untouched
+            escaped.append(part)
+        else:
+            # Outside code fence — escape bare < that aren't HTML tags
+            # Replace < followed by a digit, space, =, or end-of-line
+            part = re.sub(r"<(?=[\d\s=])", r"&lt;", part)
+            escaped.append(part)
+    return "".join(escaped)
+
+
 def build_mdx(slug: str, description: str, body: str, content_hash: str,
               domain: str = "utility", tags: list[str] | None = None) -> str:
     """Build the MDX string for a single skill entry."""
     now = datetime.now(timezone.utc).isoformat()
     source_id = f"skill_md:{slug}:{content_hash}"
     tags = tags or []
+
+    # Escape MDX-breaking characters in body
+    body = _escape_mdx_body(body)
 
     # Escape double quotes in description for YAML
     desc_escaped = description.replace('"', '\\"')

@@ -19,6 +19,7 @@ parse_frontmatter = sync_mod.parse_frontmatter
 detect_domain = sync_mod.detect_domain
 extract_tags = sync_mod.extract_tags
 build_mdx = sync_mod.build_mdx
+_escape_mdx_body = sync_mod._escape_mdx_body
 sync = sync_mod.sync
 
 
@@ -152,6 +153,26 @@ class TestExtractTags:
 # ---------------------------------------------------------------------------
 # build_mdx
 # ---------------------------------------------------------------------------
+
+
+class TestEscapeMdxBody:
+    def test_escapes_angle_bracket_before_digit(self):
+        assert _escape_mdx_body("(<300 words)") == "(&lt;300 words)"
+
+    def test_preserves_html_tags(self):
+        assert _escape_mdx_body("<div>hello</div>") == "<div>hello</div>"
+
+    def test_preserves_code_blocks(self):
+        body = "before\n```\n<300\n```\nafter <3"
+        result = _escape_mdx_body(body)
+        assert "<300" in result  # inside code block, untouched
+        assert "&lt;3" in result  # outside code block, escaped
+
+    def test_escapes_angle_bracket_before_space(self):
+        assert _escape_mdx_body("a < b") == "a &lt; b"
+
+    def test_no_escape_needed(self):
+        assert _escape_mdx_body("just normal text") == "just normal text"
 
 
 class TestBuildMdx:
