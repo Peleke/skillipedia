@@ -1,5 +1,6 @@
 ---
 id: "skill:engagement-pass"
+name: "engagement-pass"
 type: skill
 claim: "Retrofit existing notebooks with interactive engagement elements — Plotly plots, video embeds, ipywidgets, animations, concept maps, and \"build a toy\" exercises. Triggers on \"add engagement to\", \"make interactive\", \"retrofit\", \"engagement pass on\", or when upgrading static notebooks with interactive elements."
 confidence: 0.75
@@ -20,7 +21,7 @@ provenance:
 metadata:
   source_id: "skill_md:engagement-pass:eb0f47"
   skill_format: canonical
-generated_at: "2026-03-14T21:38:58.801173+00:00"
+generated_at: "2026-03-14T21:53:05.382746+00:00"
 ---
 
 # Engagement Pass

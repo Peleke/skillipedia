@@ -1,5 +1,6 @@
 ---
 id: "skill:community-pitch"
+name: "community-pitch"
 type: skill
 claim: "Community pitch engine -- takes persona extraction output and signal scan data, then produces a complete paid community plan with concept, platform recommendation, membership tiers, content cadence, launch plan, economics, community structure, and bundling strategy. Use when converting validated persona insights into a recurring-revenue community business (primarily Skool, but platform-agnostic)."
 confidence: 0.75
@@ -21,7 +22,7 @@ provenance:
 metadata:
   source_id: "skill_md:community-pitch:4b78b8"
   skill_format: canonical
-generated_at: "2026-03-14T21:38:58.800037+00:00"
+generated_at: "2026-03-14T21:53:05.380574+00:00"
 ---
 
 # Community Pitch

@@ -1,5 +1,6 @@
 ---
 id: "skill:lesson-generator"
+name: "lesson-generator"
 type: skill
 claim: "Generate and revise curricula, arc syllabi, and Jupyter notebook lessons at any zoom level. Triggers on \"design a curriculum\", \"I want to learn\", \"create a course\", \"generate arc/module syllabus\", \"create lesson/notebook\", \"update/revise [artifact]\", or when working with educational content. Handles the full pipeline from elicitation interview through course map, arc syllabi, and individual module notebooks — plus targeted revisions with cascade awareness."
 confidence: 0.75
@@ -20,7 +21,7 @@ provenance:
 metadata:
   source_id: "skill_md:lesson-generator:b62eb6"
   skill_format: canonical
-generated_at: "2026-03-14T21:38:58.803653+00:00"
+generated_at: "2026-03-14T21:53:05.386261+00:00"
 ---
 
 # Lesson Generator

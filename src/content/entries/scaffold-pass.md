@@ -1,5 +1,6 @@
 ---
 id: "skill:scaffold-pass"
+name: "scaffold-pass"
 type: skill
 claim: "Analyze educational content and inject architectural scaffolding: designed failures, skeleton-first stubs, accumulation artifacts, reading strategies, troubleshooting callouts, and bonus depth labels. Runs after outline-writer or notebook-builder, before engagement-pass."
 confidence: 0.75
@@ -20,7 +21,7 @@ provenance:
 metadata:
   source_id: "skill_md:scaffold-pass:fca423"
   skill_format: canonical
-generated_at: "2026-03-14T21:38:58.809422+00:00"
+generated_at: "2026-03-14T21:53:05.397299+00:00"
 ---
 
 # Scaffold Pass

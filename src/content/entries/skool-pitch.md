@@ -1,5 +1,6 @@
 ---
 id: "skill:skool-pitch"
+name: "skool-pitch"
 type: skill
 claim: "Skool-specific community pitch engine -- takes a topic, operator edge, and target audience (with optional persona and signal scan data from the hunter pipeline) and produces a complete Skool community plan with concept, competitive landscape, gamification design, pricing, content architecture, launch playbook (including Skool Games and affiliate strategy), economics, value ladder, and risk assessment. General-purpose -- works for any topic from DevOps to watercolor painting."
 confidence: 0.75
@@ -22,7 +23,7 @@ provenance:
 metadata:
   source_id: "skill_md:skool-pitch:fc7e8f"
   skill_format: canonical
-generated_at: "2026-03-14T21:38:58.810124+00:00"
+generated_at: "2026-03-14T21:53:05.398748+00:00"
 ---
 
 # Skool Pitch

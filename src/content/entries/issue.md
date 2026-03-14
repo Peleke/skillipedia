@@ -1,5 +1,6 @@
 ---
 id: "skill:issue"
+name: "issue"
 type: skill
 claim: "Draft well-structured GitHub issues with clear titles, structured descriptions, acceptance criteria, and appropriate labels. Use this skill when a user asks to create, write, or draft a GitHub issue, bug report, feature request, task ticket, or RFC/proposal. Also use when a user asks to file an issue, open a ticket, or report a bug."
 confidence: 0.75
@@ -20,7 +21,7 @@ provenance:
 metadata:
   source_id: "skill_md:issue:54095b"
   skill_format: canonical
-generated_at: "2026-03-14T21:38:58.802346+00:00"
+generated_at: "2026-03-14T21:53:05.384830+00:00"
 ---
 
 # GitHub Issue Drafting

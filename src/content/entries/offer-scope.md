@@ -1,5 +1,6 @@
 ---
 id: "skill:offer-scope"
+name: "offer-scope"
 type: skill
 claim: "Offer scoping engine -- takes persona extraction output (pain stories, decision points, buying triggers, archetypes) and signal scan SPEND data, then produces a complete 1-day build spec with positioning, distribution plan, and revenue model. Use when converting validated persona insights into a shippable product spec."
 confidence: 0.75
@@ -21,7 +22,7 @@ provenance:
 metadata:
   source_id: "skill_md:offer-scope:23a602"
   skill_format: canonical
-generated_at: "2026-03-14T21:38:58.806041+00:00"
+generated_at: "2026-03-14T21:53:05.391100+00:00"
 ---
 
 # Offer Scope

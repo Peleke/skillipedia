@@ -1,5 +1,6 @@
 ---
 id: "skill:ax-rubric"
+name: "ax-rubric"
 type: skill
 claim: "Score agent-facing tool descriptions against the AX Description Rubric. Takes a tool description, scores it 0-5 on agent discoverability, explains failures, and rewrites it to pass. Use when writing or reviewing MCP tool descriptions, API docs, or skill descriptions."
 confidence: 0.75
@@ -20,7 +21,7 @@ provenance:
 metadata:
   source_id: "skill_md:ax-rubric:c72a8d"
   skill_format: canonical
-generated_at: "2026-03-14T21:38:58.799417+00:00"
+generated_at: "2026-03-14T21:53:05.379571+00:00"
 ---
 
 # AX Description Rubric — Tool Description Reviewer

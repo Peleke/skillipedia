@@ -1,5 +1,6 @@
 ---
 id: "skill:slidev-deck"
+name: "slidev-deck"
 type: skill
 claim: "Generate product-oriented slide decks using sli.dev with embedded hand-drawn SVGs. Use when users ask for pitch decks, strategy presentations, validation summaries, or any visual deck that needs to tell a product/engineering story. Integrates with the hunter pipeline outputs and uses the sketches skill for SVG generation."
 confidence: 0.75
@@ -20,7 +21,7 @@ provenance:
 metadata:
   source_id: "skill_md:slidev-deck:887cd6"
   skill_format: canonical
-generated_at: "2026-03-14T21:38:58.810454+00:00"
+generated_at: "2026-03-14T21:53:05.399379+00:00"
 ---
 
 # Slidev Deck

@@ -1,5 +1,6 @@
 ---
 id: "skill:content-planner"
+name: "content-planner"
 type: skill
 claim: "Scan GitHub activity and buildlog entries, synthesize engineering work into publishable content opportunities with fan-out analysis, and output an Obsidian-compatible content plan (kanban board + instrumented briefs). Use when planning content, updating the content calendar, or generating writing ideas from recent engineering work."
 confidence: 0.75
@@ -20,7 +21,7 @@ provenance:
 metadata:
   source_id: "skill_md:content-planner:35ca19"
   skill_format: canonical
-generated_at: "2026-03-14T21:49:30.692452+00:00"
+generated_at: "2026-03-14T21:53:05.381260+00:00"
 ---
 
 # Content Planner

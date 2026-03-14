@@ -1,5 +1,6 @@
 ---
 id: "skill:pitch"
+name: "pitch"
 type: skill
 claim: "Go-to-market launch engine. Use when converting a validated offer spec into ready-to-execute landing page copy, launch posts, GitHub README, email sequence, launch checklist, A/B test spec, and kill criteria."
 confidence: 0.75
@@ -21,7 +22,7 @@ provenance:
 metadata:
   source_id: "skill_md:pitch:577b81"
   skill_format: canonical
-generated_at: "2026-03-14T21:38:58.807210+00:00"
+generated_at: "2026-03-14T21:53:05.392984+00:00"
 ---
 
 # Pitch

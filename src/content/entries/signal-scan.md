@@ -1,5 +1,6 @@
 ---
 id: "skill:signal-scan"
+name: "signal-scan"
 type: skill
 claim: "Product signal scanner -- identifies market opportunities by analyzing pain points, demand, spend, sentiment, competitive landscape, and audience signals across Reddit, social media, course marketplaces, and other sources. Use when scanning a domain for product opportunities, running a market analysis, or identifying what to build and sell next."
 confidence: 0.75
@@ -22,7 +23,7 @@ provenance:
 metadata:
   source_id: "skill_md:signal-scan:6fe283"
   skill_format: canonical
-generated_at: "2026-03-14T21:38:58.809692+00:00"
+generated_at: "2026-03-14T21:53:05.397891+00:00"
 ---
 
 # Signal Scan

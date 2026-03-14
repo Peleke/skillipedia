@@ -1,5 +1,6 @@
 ---
 id: "skill:linwheel-source-optimizer"
+name: "linwheel-source-optimizer"
 type: skill
 claim: "Optimize raw engineering output (buildlog entries, GH synthesis, daily notes, session logs) into high-quality ::linkedin Obsidian notes that produce the best possible LinWheel reshape output. Structures content around proven LinkedIn post anatomy: hooks, tension, specifics, and angle-ready beats. Use when writing vault notes destined for the LinWheel pipeline."
 confidence: 0.75
@@ -20,7 +21,7 @@ provenance:
 metadata:
   source_id: "skill_md:linwheel-source-optimizer:8e82d2"
   skill_format: canonical
-generated_at: "2026-03-14T21:49:30.697888+00:00"
+generated_at: "2026-03-14T21:53:05.388506+00:00"
 ---
 
 # LinWheel Source Optimizer

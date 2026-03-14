@@ -1,5 +1,6 @@
 ---
 id: "skill:runlet"
+name: "runlet"
 type: skill
 claim: "Turn a braindump into tomorrow's runlist. Call at end of session or when the user says 'runlet' / 'braindump' / 'what should I do tomorrow'. Input: unstructured text + optional previous runlist. Output: 4-quadrant Obsidian markdown (~800 tokens) with entry points on high-activation items, carry-forward tags, kill reasoning, and a machine-readable RUNLET_SUMMARY JSON block for agent pings. ND-adapted: classifies by activation energy, not urgency."
 confidence: 0.75
@@ -20,7 +21,7 @@ provenance:
 metadata:
   source_id: "skill_md:runlet:e444b9"
   skill_format: canonical
-generated_at: "2026-03-14T21:38:58.808920+00:00"
+generated_at: "2026-03-14T21:53:05.396483+00:00"
 ---
 
 # Runlet — ND-Adapted Daily Task Compiler

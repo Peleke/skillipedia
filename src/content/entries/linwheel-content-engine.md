@@ -1,5 +1,6 @@
 ---
 id: "skill:linwheel-content-engine"
+name: "linwheel-content-engine"
 type: skill
 claim: "Orchestrate LinkedIn content creation through LinWheel's MCP server. Analyzes source material, generates multi-angle drafts, produces carousels and images, schedules posts, and manages follow-up comments — all through 22 MCP tools. Call when the user says 'post to LinkedIn', 'write a LinkedIn post', 'schedule content', or 'linwheel'. Input: source content (article, braindump, thread). Output: published or scheduled LinkedIn post with optional carousel and timed follow-up comments."
 confidence: 0.75
@@ -20,7 +21,7 @@ provenance:
 metadata:
   source_id: "skill_md:linwheel-content-engine:ccfea7"
   skill_format: canonical
-generated_at: "2026-03-14T21:38:58.804092+00:00"
+generated_at: "2026-03-14T21:53:05.387885+00:00"
 ---
 
 # LinWheel Content Engine — LinkedIn Content Creation via MCP

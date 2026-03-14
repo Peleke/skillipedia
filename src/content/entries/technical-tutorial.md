@@ -1,5 +1,6 @@
 ---
 id: "skill:technical-tutorial"
+name: "technical-tutorial"
 type: skill
 claim: "Draft technical tutorials that teach through code. Combines SPIN storytelling arc with DO→NOTICE→CODE→NAME pedagogy loop, prerequisite tracking, beat/artifact sync, exercise design, Bragi prose gate, and voice calibration. For tutorials where the reader builds a working thing, not just reads about one."
 confidence: 0.75
@@ -20,7 +21,7 @@ provenance:
 metadata:
   source_id: "skill_md:technical-tutorial:b950bc"
   skill_format: canonical
-generated_at: "2026-03-14T21:38:58.811290+00:00"
+generated_at: "2026-03-14T21:53:05.401158+00:00"
 ---
 
 # Technical Tutorial

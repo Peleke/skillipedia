@@ -1,5 +1,6 @@
 ---
 id: "skill:llms-txt-generator"
+name: "llms-txt-generator"
 type: skill
 claim: "Generate llms.txt and llms-full.txt files for any MkDocs documentation site, following the llms.txt standard. Creates a curated index of doc pages and a MkDocs build hook that auto-generates the full inlined version from source markdown. Use when adding AI-queryable docs to a project with an existing MkDocs site."
 confidence: 0.75
@@ -20,7 +21,7 @@ provenance:
 metadata:
   source_id: "skill_md:llms-txt-generator:252f9f"
   skill_format: canonical
-generated_at: "2026-03-14T21:38:58.804903+00:00"
+generated_at: "2026-03-14T21:53:05.389170+00:00"
 ---
 
 # llms.txt Generator
