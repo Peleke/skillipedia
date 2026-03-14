@@ -4,6 +4,7 @@ const entries = defineCollection({
   type: "content",
   schema: z.object({
     id: z.string(),
+    name: z.string().optional(),
     type: z.enum(["skill", "pattern", "learning"]),
     claim: z.string(),
     confidence: z.number().min(0).max(1),

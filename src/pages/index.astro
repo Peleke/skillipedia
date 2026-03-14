@@ -64,6 +64,7 @@ const domains = [...new Set(entries.map((e) => e.data.domain))].sort();
         <EntryCard
           slug={entry.id}
           id={entry.data.id}
+          name={entry.data.name}
           type={entry.data.type}
           claim={entry.data.claim}
           domain={entry.data.domain}

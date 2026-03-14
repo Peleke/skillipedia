@@ -118,14 +118,19 @@ def _escape_mdx_body(body: str) -> str:
 
 
 def build_mdx(slug: str, description: str, body: str, content_hash: str,
-              domain: str = "utility", tags: list[str] | None = None) -> str:
+              domain: str = "utility", tags: list[str] | None = None,
+              name: str | None = None) -> str:
     """Build the MDX string for a single skill entry."""
     now = datetime.now(timezone.utc).isoformat()
     source_id = f"skill_md:{slug}:{content_hash}"
     tags = tags or []
 
+    # Derive display name from frontmatter name or slug
+    display_name = name or slug.replace("-", " ").title()
+
     # Escape double quotes in description for YAML
     desc_escaped = description.replace('"', '\\"')
+    name_escaped = display_name.replace('"', '\\"')
 
     # Format tags
     if tags:
@@ -137,6 +142,7 @@ def build_mdx(slug: str, description: str, body: str, content_hash: str,
     lines = [
         "---",
         f'id: "skill:{slug}"',
+        f'name: "{name_escaped}"',
         "type: skill",
         f'claim: "{desc_escaped}"',
         "confidence: 0.75",
@@ -204,7 +210,8 @@ def sync(brunnr_dir: Path, output_dir: Path) -> None:
         domain = detect_domain(slug, raw, fm)
         tags = extract_tags(fm, raw)
 
-        mdx = build_mdx(slug, description, body, content_hash, domain=domain, tags=tags)
+        skill_name = fm.get("name", slug)
+        mdx = build_mdx(slug, description, body, content_hash, domain=domain, tags=tags, name=skill_name)
 
         out_path = output_dir / f"{slug}.md"
         if out_path.exists():
