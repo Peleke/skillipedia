@@ -49,6 +49,8 @@ const accentBar = {
   data-type={type}
   data-domain={domain}
   data-confidence={confidence}
+  data-name={displayName.toLowerCase()}
+  data-search={`${displayName} ${excerpt} ${domain} ${(tags || []).join(" ")}`.toLowerCase()}
 >
   <!-- Accent bar -->
   <div class={`h-1 rounded-t-lg ${accentBar[type]}`}></div>

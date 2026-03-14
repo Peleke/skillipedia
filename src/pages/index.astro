@@ -25,47 +25,67 @@ const domains = [...new Set(entries.map((e) => e.data.domain))].sort();
     </p>
   </section>
 
-  <!-- Filters -->
-  <section class="mb-8 flex flex-wrap items-center gap-3" id="filters">
-    <!-- Type filters -->
-    <div class="flex gap-2">
-      <button
-        data-filter-type="all"
-        class="filter-btn active rounded-full border border-parchment-300 px-3 py-1.5 font-mono text-xs font-medium text-ink-600 transition-colors hover:border-falun-400 hover:text-falun-600 dark:border-ink-600 dark:text-parchment-400 dark:hover:border-falun-500 dark:hover:text-falun-400"
-      >All</button>
-      {types.map((t) => {
-        const count = entries.filter((e) => e.data.type === t).length;
-        return (
-          <button
-            data-filter-type={t}
-            class="filter-btn rounded-full border border-parchment-300 px-3 py-1.5 font-mono text-xs font-medium text-ink-600 transition-colors hover:border-falun-400 hover:text-falun-600 dark:border-ink-600 dark:text-parchment-400 dark:hover:border-falun-500 dark:hover:text-falun-400"
-          >
-            {t} <span class="text-ink-400 dark:text-parchment-600">{count}</span>
-          </button>
-        );
-      })}
+  <!-- Search + Filters -->
+  <section class="mb-8 space-y-4" id="filters">
+    <!-- Search -->
+    <div class="relative">
+      <input
+        type="text"
+        id="search-input"
+        placeholder="Search skills..."
+        class="w-full rounded-lg border border-parchment-300 bg-white px-4 py-2.5 pl-10 font-sans text-sm text-ink-700 placeholder-ink-400 transition-colors focus:border-falun-400 focus:outline-none dark:border-ink-600 dark:bg-ink-800 dark:text-parchment-300 dark:placeholder-parchment-600"
+      />
+      <svg class="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-400 dark:text-parchment-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+      </svg>
     </div>
 
-    <!-- Skill set filter -->
-    <select
-      id="domain-filter"
-      class="rounded-lg border border-parchment-300 bg-white px-3 py-1.5 font-mono text-xs text-ink-600 transition-colors focus:border-falun-400 focus:outline-none dark:border-ink-600 dark:bg-ink-800 dark:text-parchment-400"
-    >
-      <option value="all">All skill sets</option>
-      {domains.map((d) => {
-        const labels = {
-          "product-discovery": "Hunter Pipeline",
-          "education": "Educational Suite",
-          "utility": "Standalone Tools",
-          "security": "Security",
-          "testing": "Testing",
-          "resilience": "Resilience",
-        };
-        const count = entries.filter((e) => e.data.domain === d).length;
-        return <option value={d}>{labels[d] || d} ({count})</option>;
-      })}
-    </select>
+    <!-- Type + Domain filters -->
+    <div class="flex flex-wrap items-center gap-3">
+      <div class="flex gap-2">
+        <button
+          data-filter-type="all"
+          class="filter-btn active rounded-full border border-parchment-300 px-3 py-1.5 font-mono text-xs font-medium text-ink-600 transition-colors hover:border-falun-400 hover:text-falun-600 dark:border-ink-600 dark:text-parchment-400 dark:hover:border-falun-500 dark:hover:text-falun-400"
+        >All</button>
+        {types.map((t) => {
+          const count = entries.filter((e) => e.data.type === t).length;
+          return (
+            <button
+              data-filter-type={t}
+              class="filter-btn rounded-full border border-parchment-300 px-3 py-1.5 font-mono text-xs font-medium text-ink-600 transition-colors hover:border-falun-400 hover:text-falun-600 dark:border-ink-600 dark:text-parchment-400 dark:hover:border-falun-500 dark:hover:text-falun-400"
+            >
+              {t} <span class="text-ink-400 dark:text-parchment-600">{count}</span>
+            </button>
+          );
+        })}
+      </div>
+
+      <!-- Skill set filter -->
+      <select
+        id="domain-filter"
+        class="rounded-lg border border-parchment-300 bg-white px-3 py-1.5 font-mono text-xs text-ink-600 transition-colors focus:border-falun-400 focus:outline-none dark:border-ink-600 dark:bg-ink-800 dark:text-parchment-400"
+      >
+        <option value="all">All skill sets</option>
+        {domains.map((d) => {
+          const labels = {
+            "product-discovery": "Hunter Pipeline",
+            "education": "Educational Suite",
+            "utility": "Standalone Tools",
+            "security": "Security",
+            "testing": "Testing",
+            "resilience": "Resilience",
+          };
+          const count = entries.filter((e) => e.data.domain === d).length;
+          return <option value={d}>{labels[d] || d} ({count})</option>;
+        })}
+      </select>
+    </div>
   </section>
+
+  <!-- Results count -->
+  <div class="mb-4 flex items-center justify-between">
+    <p id="results-count" class="font-mono text-xs text-ink-400 dark:text-parchment-600"></p>
+  </div>
 
   <!-- Grid -->
   <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" id="entries-grid">
@@ -90,49 +110,157 @@ const domains = [...new Set(entries.map((e) => e.data.domain))].sort();
     <p class="font-serif text-lg text-ink-400 dark:text-parchment-600">No entries match the current filters.</p>
   </div>
 
-  <!-- Filter script -->
+  <!-- Pagination -->
+  <nav id="pagination" class="mt-8 flex items-center justify-center gap-2">
+  </nav>
+
+  <!-- Filter + Search + Pagination script -->
   <script is:inline>
     (function() {
-      const grid = document.getElementById("entries-grid");
-      const cards = grid.querySelectorAll("[data-type]");
-      const filterBtns = document.querySelectorAll(".filter-btn");
-      const domainSelect = document.getElementById("domain-filter");
-      const emptyState = document.getElementById("empty-state");
+      var PAGE_SIZE = 12;
 
-      let activeType = "all";
-      let activeDomain = "all";
+      var grid = document.getElementById("entries-grid");
+      var allCards = Array.from(grid.querySelectorAll("[data-type]"));
+      var filterBtns = document.querySelectorAll(".filter-btn");
+      var domainSelect = document.getElementById("domain-filter");
+      var searchInput = document.getElementById("search-input");
+      var emptyState = document.getElementById("empty-state");
+      var pagination = document.getElementById("pagination");
+      var resultsCount = document.getElementById("results-count");
 
-      function applyFilters() {
-        let visible = 0;
-        cards.forEach((card) => {
-          const matchType = activeType === "all" || card.dataset.type === activeType;
-          const matchDomain = activeDomain === "all" || card.dataset.domain === activeDomain;
-          if (matchType && matchDomain) {
-            card.style.display = "";
-            visible++;
-          } else {
-            card.style.display = "none";
-          }
+      var activeType = "all";
+      var activeDomain = "all";
+      var searchQuery = "";
+      var currentPage = 1;
+
+      function getFilteredCards() {
+        return allCards.filter(function(card) {
+          var matchType = activeType === "all" || card.dataset.type === activeType;
+          var matchDomain = activeDomain === "all" || card.dataset.domain === activeDomain;
+          var matchSearch = !searchQuery || card.dataset.search.indexOf(searchQuery) !== -1;
+          return matchType && matchDomain && matchSearch;
         });
-        emptyState.classList.toggle("hidden", visible > 0);
       }
 
-      filterBtns.forEach((btn) => {
-        btn.addEventListener("click", () => {
-          filterBtns.forEach((b) => b.classList.remove("active", "border-falun-500", "text-falun-600", "dark:border-falun-400", "dark:text-falun-300"));
+      function renderPagination(totalItems) {
+        var totalPages = Math.ceil(totalItems / PAGE_SIZE);
+        pagination.innerHTML = "";
+
+        if (totalPages <= 1) return;
+
+        // Prev
+        if (currentPage > 1) {
+          var prev = document.createElement("button");
+          prev.textContent = "\u2190";
+          prev.className = "rounded-lg border border-parchment-300 px-3 py-1.5 font-mono text-xs text-ink-600 transition-colors hover:border-falun-400 dark:border-ink-600 dark:text-parchment-400";
+          prev.onclick = function() { currentPage--; applyFilters(); };
+          pagination.appendChild(prev);
+        }
+
+        // Page numbers
+        for (var i = 1; i <= totalPages; i++) {
+          var btn = document.createElement("button");
+          btn.textContent = i;
+          btn.className = i === currentPage
+            ? "rounded-lg border border-falun-500 bg-falun-500 px-3 py-1.5 font-mono text-xs font-medium text-white dark:border-falun-400 dark:bg-falun-600"
+            : "rounded-lg border border-parchment-300 px-3 py-1.5 font-mono text-xs text-ink-600 transition-colors hover:border-falun-400 dark:border-ink-600 dark:text-parchment-400";
+          (function(page) {
+            btn.onclick = function() { currentPage = page; applyFilters(); };
+          })(i);
+          pagination.appendChild(btn);
+        }
+
+        // Next
+        if (currentPage < totalPages) {
+          var next = document.createElement("button");
+          next.textContent = "\u2192";
+          next.className = "rounded-lg border border-parchment-300 px-3 py-1.5 font-mono text-xs text-ink-600 transition-colors hover:border-falun-400 dark:border-ink-600 dark:text-parchment-400";
+          next.onclick = function() { currentPage++; applyFilters(); };
+          pagination.appendChild(next);
+        }
+      }
+
+      function applyFilters() {
+        var filtered = getFilteredCards();
+        var totalFiltered = filtered.length;
+        var totalPages = Math.ceil(totalFiltered / PAGE_SIZE);
+
+        // Clamp page
+        if (currentPage > totalPages) currentPage = totalPages || 1;
+
+        var startIdx = (currentPage - 1) * PAGE_SIZE;
+        var endIdx = startIdx + PAGE_SIZE;
+
+        // Hide all, then show paginated subset
+        allCards.forEach(function(card) { card.style.display = "none"; });
+        filtered.forEach(function(card, i) {
+          if (i >= startIdx && i < endIdx) {
+            card.style.display = "";
+          }
+        });
+
+        emptyState.classList.toggle("hidden", totalFiltered > 0);
+
+        // Results count
+        if (totalFiltered === allCards.length) {
+          resultsCount.textContent = totalFiltered + " entries";
+        } else {
+          resultsCount.textContent = totalFiltered + " of " + allCards.length + " entries";
+        }
+        if (totalPages > 1) {
+          resultsCount.textContent += " \u00b7 page " + currentPage + " of " + totalPages;
+        }
+
+        renderPagination(totalFiltered);
+      }
+
+      // Type filter buttons
+      filterBtns.forEach(function(btn) {
+        btn.addEventListener("click", function() {
+          filterBtns.forEach(function(b) { b.classList.remove("active", "border-falun-500", "text-falun-600", "dark:border-falun-400", "dark:text-falun-300"); });
           btn.classList.add("active", "border-falun-500", "text-falun-600", "dark:border-falun-400", "dark:text-falun-300");
           activeType = btn.dataset.filterType;
+          currentPage = 1;
           applyFilters();
         });
       });
 
-      domainSelect.addEventListener("change", () => {
+      // Domain filter
+      domainSelect.addEventListener("change", function() {
         activeDomain = domainSelect.value;
+        currentPage = 1;
         applyFilters();
       });
 
-      // Set initial active state
+      // Search
+      var searchTimeout;
+      searchInput.addEventListener("input", function() {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(function() {
+          searchQuery = searchInput.value.toLowerCase().trim();
+          currentPage = 1;
+          applyFilters();
+        }, 150);
+      });
+
+      // Keyboard shortcut: / to focus search
+      document.addEventListener("keydown", function(e) {
+        if (e.key === "/" && document.activeElement !== searchInput) {
+          e.preventDefault();
+          searchInput.focus();
+        }
+        if (e.key === "Escape" && document.activeElement === searchInput) {
+          searchInput.value = "";
+          searchQuery = "";
+          currentPage = 1;
+          searchInput.blur();
+          applyFilters();
+        }
+      });
+
+      // Initial state
       filterBtns[0].classList.add("border-falun-500", "text-falun-600", "dark:border-falun-400", "dark:text-falun-300");
+      applyFilters();
     })();
   </script>
 </Base>
