@@ -4,6 +4,7 @@ import TypeBadge from "./TypeBadge.astro";
 interface Props {
   slug: string;
   id: string;
+  name?: string;
   type: "skill" | "pattern" | "learning";
   claim: string;
   domain: string;
@@ -11,7 +12,10 @@ interface Props {
   tags?: string[];
 }
 
-const { slug, id, type, claim, domain, confidence, tags } = Astro.props;
+const { slug, id, name, type, claim, domain, confidence, tags } = Astro.props;
+
+// Display name: use frontmatter name, or humanize slug
+const displayName = name || slug.replace(/\.mdx?$/, "").replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 
 // For cards: extract a clean text excerpt — strip markdown syntax, truncate
 const plainClaim = claim
@@ -30,7 +34,7 @@ const plainClaim = claim
   .replace(/\s{2,}/g, " ")
   .replace(/^\s*-\s+/gm, "- ")          // normalize list items
   .trim();
-const excerpt = plainClaim.length > 180 ? plainClaim.slice(0, 177) + "..." : plainClaim;
+const excerpt = plainClaim.length > 140 ? plainClaim.slice(0, 137) + "..." : plainClaim;
 
 const accentBar = {
   skill: "bg-falun-500 dark:bg-falun-600",
@@ -50,15 +54,20 @@ const accentBar = {
   <div class={`h-1 rounded-t-lg ${accentBar[type]}`}></div>
 
   <div class="p-5">
-    <!-- Header row -->
+    <!-- Title -->
+    <h3 class="mb-2 font-sans text-base font-semibold text-ink-900 dark:text-parchment-100 group-hover:text-falun-600 dark:group-hover:text-falun-400 transition-colors">
+      {displayName}
+    </h3>
+
+    <!-- Meta row -->
     <div class="mb-3 flex items-center gap-2">
       <TypeBadge type={type} />
-      <span class="font-mono text-xs text-ink-400 dark:text-parchment-600">{domain}</span>
+      <span class="rounded-md bg-parchment-200 px-1.5 py-0.5 font-mono text-[10px] text-ink-500 dark:bg-ink-700 dark:text-parchment-500">{domain}</span>
       <span class="ml-auto font-mono text-xs text-ink-400 dark:text-parchment-600">{(confidence * 100).toFixed(0)}%</span>
     </div>
 
-    <!-- Claim -->
-    <p class="font-serif text-sm leading-relaxed text-ink-700 dark:text-parchment-300">{excerpt}</p>
+    <!-- Claim excerpt -->
+    <p class="font-serif text-sm leading-relaxed text-ink-600 dark:text-parchment-400">{excerpt}</p>
 
     <!-- Tags -->
     {tags && tags.length > 0 && (
