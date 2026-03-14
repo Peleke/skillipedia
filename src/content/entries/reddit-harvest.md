@@ -1,7 +1,7 @@
 ---
 id: "skill:reddit-harvest"
 type: skill
-claim: ">"
+claim: "Playwright-driven Reddit quote harvester for the \"From the Wild\" content pipeline. Uses a logged-in browser session to search subreddits, extract pain quotes with full metadata, score them using wild-scan's rubric, and export in wild-scan format. Feeds directly into wild-scan Phase 3+ (scoring, clustering, briefs)."
 confidence: 0.75
 domain: "product-discovery"
 derivation: literal
@@ -22,7 +22,7 @@ provenance:
 metadata:
   source_id: "skill_md:reddit-harvest:531de3"
   skill_format: canonical
-generated_at: "2026-03-14T21:38:58.808461+00:00"
+generated_at: "2026-03-14T21:49:30.703160+00:00"
 ---
 
 # Reddit Harvest
