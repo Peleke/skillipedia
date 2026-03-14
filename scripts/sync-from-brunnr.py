@@ -106,9 +106,6 @@ def build_mdx(slug: str, description: str, body: str, content_hash: str,
     source_id = f"skill_md:{slug}:{content_hash}"
     tags = tags or []
 
-    # Escape MDX-breaking characters in body
-    body = _escape_mdx_body(body)
-
     # Escape double quotes in description for YAML
     desc_escaped = description.replace('"', '\\"')
 
@@ -191,7 +188,7 @@ def sync(brunnr_dir: Path, output_dir: Path) -> None:
 
         mdx = build_mdx(slug, description, body, content_hash, domain=domain, tags=tags)
 
-        out_path = output_dir / f"{slug}.mdx"
+        out_path = output_dir / f"{slug}.md"
         if out_path.exists():
             existing = out_path.read_text(encoding="utf-8")
 
