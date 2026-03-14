@@ -1,7 +1,7 @@
 ---
 id: "skill:quote-to-persona"
 type: skill
-claim: ">"
+claim: "Quote-to-persona bridge — takes wild-scan JSON output (scored pain quotes) and clusters them by behavioral archetype, then synthesizes persona-extract-compatible personas with evidence-mapped fields. Bridges the gap between wild-scan harvesting and offer-scope consumption. Use when you have harvested quotes and need structured buyer personas grounded in real evidence."
 confidence: 0.75
 domain: "product-discovery"
 derivation: literal
@@ -22,7 +22,7 @@ provenance:
 metadata:
   source_id: "skill_md:quote-to-persona:5c7f05"
   skill_format: canonical
-generated_at: "2026-03-14T21:38:58.808117+00:00"
+generated_at: "2026-03-14T21:49:30.702534+00:00"
 ---
 
 # Quote to Persona
