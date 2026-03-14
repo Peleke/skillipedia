@@ -46,13 +46,24 @@ const domains = [...new Set(entries.map((e) => e.data.domain))].sort();
       })}
     </div>
 
-    <!-- Domain filter -->
+    <!-- Skill set filter -->
     <select
       id="domain-filter"
       class="rounded-lg border border-parchment-300 bg-white px-3 py-1.5 font-mono text-xs text-ink-600 transition-colors focus:border-falun-400 focus:outline-none dark:border-ink-600 dark:bg-ink-800 dark:text-parchment-400"
     >
-      <option value="all">All domains</option>
-      {domains.map((d) => <option value={d}>{d}</option>)}
+      <option value="all">All skill sets</option>
+      {domains.map((d) => {
+        const labels = {
+          "product-discovery": "Hunter Pipeline",
+          "education": "Educational Suite",
+          "utility": "Standalone Tools",
+          "security": "Security",
+          "testing": "Testing",
+          "resilience": "Resilience",
+        };
+        const count = entries.filter((e) => e.data.domain === d).length;
+        return <option value={d}>{labels[d] || d} ({count})</option>;
+      })}
     </select>
   </section>
 
