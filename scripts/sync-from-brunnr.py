@@ -19,6 +19,13 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 
+# Domain detection keywords in SKILL.md body
+_DOMAIN_MARKERS = {
+    "product-discovery": "_conventions.md",
+    "education": "_educational-suite-conventions.md",
+}
+
+
 def parse_frontmatter(text: str) -> tuple[dict[str, str], str]:
     """Return (frontmatter_dict, body) from a markdown file with YAML front matter."""
     fm: dict[str, str] = {}
@@ -39,13 +46,55 @@ def parse_frontmatter(text: str) -> tuple[dict[str, str], str]:
     return fm, body
 
 
-def build_mdx(slug: str, description: str, body: str, content_hash: str) -> str:
+def detect_domain(slug: str, body: str, fm: dict[str, str]) -> str:
+    """Detect the skill's domain from its body content and frontmatter.
+
+    Priority:
+    1. Check body for convention file references (_conventions.md etc.)
+    2. Fall back to 'utility'
+    """
+    for domain, marker in _DOMAIN_MARKERS.items():
+        if marker in body:
+            return domain
+    return "utility"
+
+
+def extract_tags(fm: dict[str, str], body: str) -> list[str]:
+    """Extract meaningful tags from frontmatter and body content."""
+    tags = []
+
+    # Extract context from metadata line if present
+    context_match = re.search(r"context:\s*(fork|inline)", body[:500])
+    if context_match:
+        tags.append(f"context:{context_match.group(1)}")
+
+    # Check for pipeline position indicator
+    if "Pipeline Position" in body:
+        tags.append("pipeline")
+
+    # Check for web search requirement
+    if "web search" in body.lower() or "context: fork" in body.lower():
+        tags.append("web-search")
+
+    return tags
+
+
+def build_mdx(slug: str, description: str, body: str, content_hash: str,
+              domain: str = "utility", tags: list[str] | None = None) -> str:
     """Build the MDX string for a single skill entry."""
     now = datetime.now(timezone.utc).isoformat()
     source_id = f"skill_md:{slug}:{content_hash}"
+    tags = tags or []
 
     # Escape double quotes in description for YAML
     desc_escaped = description.replace('"', '\\"')
+
+    # Format tags
+    if tags:
+        tags_yaml = "\n".join(f'  - "{t}"' for t in tags)
+        tags_block = f"tags:\n{tags_yaml}"
+    else:
+        tags_block = "tags: []"
 
     lines = [
         "---",
@@ -53,15 +102,15 @@ def build_mdx(slug: str, description: str, body: str, content_hash: str) -> str:
         "type: skill",
         f'claim: "{desc_escaped}"',
         "confidence: 0.75",
-        f'domain: "skill:{slug}"',
+        f'domain: "{domain}"',
         "derivation: literal",
-        "tags: []",
-        f'category: "skill:{slug}"',
+        tags_block,
+        f'category: "{domain}"',
         "source_concepts:",
         f'  - "skill:{slug}"',
         "provenance:",
         f'  id: "skill:{slug}"',
-        f'  domain: "skill:{slug}"',
+        f'  domain: "{domain}"',
         "  derivation: literal",
         "  source_concepts:",
         f'    - "skill:{slug}"',
@@ -90,8 +139,18 @@ def sync(brunnr_dir: Path, output_dir: Path) -> None:
     created = []
     updated = []
     unchanged = []
+    skipped = []
 
     for skill_dir in sorted(skills_root.iterdir()):
+        # Skip non-directories and _-prefixed convention files
+        if not skill_dir.is_dir():
+            if skill_dir.name.startswith("_"):
+                skipped.append(skill_dir.name)
+            continue
+        if skill_dir.name.startswith("_"):
+            skipped.append(skill_dir.name)
+            continue
+
         skill_md = skill_dir / "SKILL.md"
         if not skill_md.is_file():
             continue
@@ -103,7 +162,11 @@ def sync(brunnr_dir: Path, output_dir: Path) -> None:
         fm, body = parse_frontmatter(raw)
         description = fm.get("description", fm.get("name", slug))
 
-        mdx = build_mdx(slug, description, body, content_hash)
+        # Detect domain and tags
+        domain = detect_domain(slug, raw, fm)
+        tags = extract_tags(fm, raw)
+
+        mdx = build_mdx(slug, description, body, content_hash, domain=domain, tags=tags)
 
         out_path = output_dir / f"{slug}.mdx"
         if out_path.exists():
@@ -129,6 +192,8 @@ def sync(brunnr_dir: Path, output_dir: Path) -> None:
         print(f"updated: {', '.join(updated)}")
     if unchanged:
         print(f"unchanged: {', '.join(unchanged)}")
+    if skipped:
+        print(f"skipped: {', '.join(skipped)}")
     if not created and not updated and not unchanged:
         print("no skills found")
 
