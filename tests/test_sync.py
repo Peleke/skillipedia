@@ -64,6 +64,24 @@ class TestParseFrontmatter:
         assert "name" in fm
         assert "metadata" not in fm
 
+    def test_yaml_fold_description(self):
+        """YAML fold (>) should join continuation lines."""
+        text = "---\nname: test\ndescription: >\n  First line of description\n  second line here\n---\n# Body"
+        fm, body = parse_frontmatter(text)
+        assert fm["description"] == "First line of description second line here"
+
+    def test_yaml_literal_description(self):
+        """YAML literal (|) should join continuation lines."""
+        text = "---\nname: test\ndescription: |\n  Line one\n  Line two\n---\n# Body"
+        fm, body = parse_frontmatter(text)
+        assert fm["description"] == "Line one Line two"
+
+    def test_yaml_fold_chomp(self):
+        """YAML fold-chomp (>-) should also work."""
+        text = "---\nname: test\ndescription: >-\n  Chomped fold\n---\n# Body"
+        fm, body = parse_frontmatter(text)
+        assert fm["description"] == "Chomped fold"
+
     def test_preserves_body_content(self):
         text = "---\nname: test\n---\n\n# Body\n\nParagraph\n"
         fm, body = parse_frontmatter(text)
