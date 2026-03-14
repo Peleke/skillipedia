@@ -20,7 +20,7 @@ provenance:
 metadata:
   source_id: "skill_md:notebook-builder:a67871"
   skill_format: canonical
-generated_at: "2026-03-14T21:11:10.559234+00:00"
+generated_at: "2026-03-14T21:32:18.614780+00:00"
 ---
 
 # Notebook Builder
@@ -363,6 +363,6 @@ for e in engagement:
 
 3. **Index shifts when inserting cells**: When retrofitting (not generating fresh), track index offsets from prior insertions. The notebook-builder skill generates fresh, so this doesn't apply.
 
-4. **Large notebooks timing out**: For 50+ cell notebooks, the generation script runs fast (< 1s). The notebook *execution* is what's slow — that's a separate concern.
+4. **Large notebooks timing out**: For 50+ cell notebooks, the generation script runs fast (&lt; 1s). The notebook *execution* is what's slow — that's a separate concern.
 
 5. **Missing `from IPython.display import clear_output`**: Widget update functions often need this. Include it inside the function, not at top level, to avoid import-before-use issues in cell ordering.
