@@ -1,5 +1,6 @@
 ---
 id: "skill:mkdocs-site-generator"
+name: "mkdocs-site-generator"
 type: skill
 claim: "Generate a complete MkDocs documentation site with GitHub Pages CI/CD for any TypeScript/Node.js codebase. Covers discovery, architecture, scaffold, content generation, CI/CD setup, and cross-reference verification. Use when setting up docs for a new or existing project."
 confidence: 0.75
@@ -20,7 +21,7 @@ provenance:
 metadata:
   source_id: "skill_md:mkdocs-site-generator:1ba7da"
   skill_format: canonical
-generated_at: "2026-03-14T21:38:58.805393+00:00"
+generated_at: "2026-03-14T21:53:05.389920+00:00"
 ---
 
 # MkDocs Site Generator

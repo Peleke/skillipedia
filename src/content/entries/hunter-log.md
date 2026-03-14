@@ -1,5 +1,6 @@
 ---
 id: "skill:hunter-log"
+name: "hunter-log"
 type: skill
 claim: "Persistence layer for the hunter product discovery pipeline. Takes PipelineEnvelope JSON from any pipeline skill (signal-scan, decision-log, persona-extract, offer-scope) and saves it as structured, Obsidian-compatible markdown with proper frontmatter, tags, cross-links, session tracking, and kanban board updates."
 confidence: 0.75
@@ -20,7 +21,7 @@ provenance:
 metadata:
   source_id: "skill_md:hunter-log:b39b69"
   skill_format: canonical
-generated_at: "2026-03-14T21:38:58.801404+00:00"
+generated_at: "2026-03-14T21:53:05.383137+00:00"
 ---
 
 # Hunter Log

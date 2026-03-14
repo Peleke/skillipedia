@@ -1,5 +1,6 @@
 ---
 id: "skill:outline-writer"
+name: "outline-writer"
 type: skill
 claim: "Create detailed narrative outlines for notebook modules through riffing and structured discovery. Triggers on \"outline module\", \"riff on module\", \"plan module\", \"outline for\", or when preparing to generate a new notebook."
 confidence: 0.75
@@ -20,7 +21,7 @@ provenance:
 metadata:
   source_id: "skill_md:outline-writer:b23650"
   skill_format: canonical
-generated_at: "2026-03-14T21:38:58.806347+00:00"
+generated_at: "2026-03-14T21:53:05.391704+00:00"
 ---
 
 # Outline Writer

@@ -1,5 +1,6 @@
 ---
 id: "skill:assessment-generator"
+name: "assessment-generator"
 type: skill
 claim: "Generate tiered assessments that test understanding at six cognitive levels. Maps to DO→NOTICE→CODE→NAME: recall, predict, build, break, transfer, teach. Companion to technical-tutorial — tutorials teach, this evaluates. Includes difficulty calibration, Socratic follow-ups for wrong answers, and misconception log integration."
 confidence: 0.75
@@ -20,7 +21,7 @@ provenance:
 metadata:
   source_id: "skill_md:assessment-generator:e56390"
   skill_format: canonical
-generated_at: "2026-03-14T21:38:58.798708+00:00"
+generated_at: "2026-03-14T21:53:05.378171+00:00"
 ---
 
 # Assessment Generator

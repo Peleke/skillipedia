@@ -1,5 +1,6 @@
 ---
 id: "skill:swot-analysis"
+name: "swot-analysis"
 type: skill
 claim: "Evidence-grounded SWOT analysis engine -- takes persona extraction output, signal scan data, format research, and market hypothesis, then produces a brutally honest Strengths/Weaknesses/Opportunities/Threats analysis with verdict (proceed/pivot/kill), risk registry, and moat assessment. Use when stress-testing a product hypothesis before committing to a build spec."
 confidence: 0.75
@@ -23,7 +24,7 @@ provenance:
 metadata:
   source_id: "skill_md:swot-analysis:1f38fa"
   skill_format: canonical
-generated_at: "2026-03-14T21:38:58.810706+00:00"
+generated_at: "2026-03-14T21:53:05.400219+00:00"
 ---
 
 # SWOT Analysis

@@ -1,5 +1,6 @@
 ---
 id: "skill:article-draft"
+name: "article-draft"
 type: skill
 claim: "Draft technical articles with narrative structure, visual injection, and prose quality enforcement. Combines SPIN storytelling, engagement science, Bragi prose gate, and comedy-writer voice calibration for articles that are rigorous AND readable."
 confidence: 0.75
@@ -20,7 +21,7 @@ provenance:
 metadata:
   source_id: "skill_md:article-draft:6b738c"
   skill_format: canonical
-generated_at: "2026-03-14T21:38:58.797884+00:00"
+generated_at: "2026-03-14T21:53:05.376940+00:00"
 ---
 
 # Article Draft

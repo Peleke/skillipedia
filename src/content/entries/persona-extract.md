@@ -1,5 +1,6 @@
 ---
 id: "skill:persona-extract"
+name: "persona-extract"
 type: skill
 claim: "Persona extraction engine -- takes decision-log output and signal scan data, then produces deep persona research with real stories, decision points, Four Forces analysis, and offer mapping. Uses web search to find real evidence. Use when converting validated market signals into evidence-based buyer personas grounded in real stories."
 confidence: 0.75
@@ -23,7 +24,7 @@ provenance:
 metadata:
   source_id: "skill_md:persona-extract:0270c5"
   skill_format: canonical
-generated_at: "2026-03-14T21:38:58.806589+00:00"
+generated_at: "2026-03-14T21:53:05.392098+00:00"
 ---
 
 # Persona Extract

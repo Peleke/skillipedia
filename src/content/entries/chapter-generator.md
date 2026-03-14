@@ -1,5 +1,6 @@
 ---
 id: "skill:chapter-generator"
+name: "chapter-generator"
 type: skill
 claim: "Generate a single tutorial chapter from a structured spec. Triggers on \"generate chapter\", \"create the [chapter] tutorial\", \"write chapter [N]\", \"/chapter-gen\". Takes a chapter spec (from curriculum-planner or inline) and produces a Markdown file following the configured voice guide, with MkDocs-compatible formatting."
 confidence: 0.75
@@ -20,7 +21,7 @@ provenance:
 metadata:
   source_id: "skill_md:chapter-generator:abfff6"
   skill_format: canonical
-generated_at: "2026-03-14T21:38:58.799780+00:00"
+generated_at: "2026-03-14T21:53:05.380076+00:00"
 ---
 
 # Chapter Generator

@@ -1,5 +1,6 @@
 ---
 id: "skill:curriculum-planner"
+name: "curriculum-planner"
 type: skill
 claim: "Interactive elicitation protocol for designing tutorial series. Triggers on \"plan a tutorial\", \"design a curriculum\", \"I want to teach [topic]\", \"/curriculum-plan\". Runs structured elicitation across 5 dimensions, produces YAML outline + per-chapter specs ready for the chapter-generator skill."
 confidence: 0.75
@@ -20,7 +21,7 @@ provenance:
 metadata:
   source_id: "skill_md:curriculum-planner:8b7578"
   skill_format: canonical
-generated_at: "2026-03-14T21:38:58.800632+00:00"
+generated_at: "2026-03-14T21:53:05.381720+00:00"
 ---
 
 # Curriculum Planner

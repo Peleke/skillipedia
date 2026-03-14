@@ -1,5 +1,6 @@
 ---
 id: "skill:positioning"
+name: "positioning"
 type: skill
 claim: "Strategic positioning engine using Dunford's 'Obviously Awesome' framework. Takes offer-scope output, persona data, and SWOT findings, then produces a positioning canvas, messaging hierarchy, ICP profile, and competitive landscape. Use when deepening positioning before pitch."
 confidence: 0.75
@@ -23,7 +24,7 @@ provenance:
 metadata:
   source_id: "skill_md:positioning:a04349"
   skill_format: canonical
-generated_at: "2026-03-14T21:38:58.807716+00:00"
+generated_at: "2026-03-14T21:53:05.393961+00:00"
 ---
 
 # Positioning

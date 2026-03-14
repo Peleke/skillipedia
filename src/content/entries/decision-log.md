@@ -1,5 +1,6 @@
 ---
 id: "skill:decision-log"
+name: "decision-log"
 type: skill
 claim: "Structured product decision engine -- takes signal scan output and operator preferences, applies the Signal-to-Decision Pipeline (SDP) framework, and produces a scored, filtered, bias-checked decision record with pre-mortem analysis and kill criteria. Use when choosing which opportunity to pursue from a completed signal scan."
 confidence: 0.75
@@ -23,7 +24,7 @@ provenance:
 metadata:
   source_id: "skill_md:decision-log:78e8fd"
   skill_format: canonical
-generated_at: "2026-03-14T21:38:58.800871+00:00"
+generated_at: "2026-03-14T21:53:05.382128+00:00"
 ---
 
 # Decision Log

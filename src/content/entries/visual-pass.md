@@ -1,5 +1,6 @@
 ---
 id: "skill:visual-pass"
+name: "visual-pass"
 type: skill
 claim: "Scan existing educational content (notebooks, tutorials, articles) and identify where to inject visual assets. Produces a prioritized injection manifest with per-visual rendering instructions — delegates actual rendering to inline-svg-architecture-diagrams, Manim MCP, ComfyUI MCP, Mermaid, and engagement-pass. The analysis layer between content generation and visual production."
 confidence: 0.75
@@ -21,7 +22,7 @@ provenance:
 metadata:
   source_id: "skill_md:visual-pass:cd75b7"
   skill_format: canonical
-generated_at: "2026-03-14T21:38:58.812198+00:00"
+generated_at: "2026-03-14T21:53:05.402434+00:00"
 ---
 
 # Visual Pass

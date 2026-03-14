@@ -1,5 +1,6 @@
 ---
 id: "skill:sketches"
+name: "sketches"
 type: skill
 claim: "Create hand-drawn-style visual sketches, wireframes, and diagrams using inline SVG. Produces rough, sketchy visuals with a whiteboard/napkin aesthetic (think Balsamiq or Excalidraw). Use when users ask to sketch, wireframe, mock up, diagram, or visually explain something -- including UI wireframes, architecture diagrams, flowcharts, process diagrams, concept sketches, and brainstorming visuals. Also use when users say \"draw\", \"sketch\", \"wireframe\", \"mock up\", \"diagram\", or \"visualize\"."
 confidence: 0.75
@@ -20,7 +21,7 @@ provenance:
 metadata:
   source_id: "skill_md:sketches:25075c"
   skill_format: canonical
-generated_at: "2026-03-14T21:38:58.809914+00:00"
+generated_at: "2026-03-14T21:53:05.398368+00:00"
 ---
 
 # Sketches

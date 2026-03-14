@@ -1,5 +1,6 @@
 ---
 id: "skill:wild-scan"
+name: "wild-scan"
 type: skill
 claim: "Pain-quote harvester for the \"From the Wild\" content series. Searches Reddit, HN, Stack Overflow, dev.to, and other communities for SPECIFIC QUOTES of real people struggling with a topic (e.g., learning DevOps). Indexes quotes by theme, scores them for content potential, and generates \"From the Wild\" content briefs with instructional repo specs. Run weekly to fuel the content loop."
 confidence: 0.75
@@ -21,7 +22,7 @@ provenance:
 metadata:
   source_id: "skill_md:wild-scan:5d4114"
   skill_format: canonical
-generated_at: "2026-03-14T21:49:30.708917+00:00"
+generated_at: "2026-03-14T21:53:05.403581+00:00"
 ---
 
 # Wild Scan

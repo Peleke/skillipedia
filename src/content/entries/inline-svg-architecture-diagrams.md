@@ -1,5 +1,6 @@
 ---
 id: "skill:inline-svg-architecture-diagrams"
+name: "inline-svg-architecture-diagrams"
 type: skill
 claim: "Generate production-quality inline SVG architecture diagrams with theme-aware CSS variables, animated flow lines, glow effects, feedback loops, and responsive layout. No external dependencies, no build steps, no image files. Use when creating system architecture visuals that integrate with a design system."
 confidence: 0.75
@@ -20,7 +21,7 @@ provenance:
 metadata:
   source_id: "skill_md:inline-svg-architecture-diagrams:d3a541"
   skill_format: canonical
-generated_at: "2026-03-14T21:38:58.802093+00:00"
+generated_at: "2026-03-14T21:53:05.384017+00:00"
 ---
 
 # Inline SVG Architecture Diagrams

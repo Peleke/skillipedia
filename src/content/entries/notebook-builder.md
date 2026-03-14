@@ -1,5 +1,6 @@
 ---
 id: "skill:notebook-builder"
+name: "notebook-builder"
 type: skill
 claim: "Generate Jupyter notebooks (.ipynb) from detailed outlines using Python scripts that build notebook JSON. Triggers on \"generate notebook\", \"build notebook from outline\", \"turn outline into notebook\", or when a ready-to-generate outline exists."
 confidence: 0.75
@@ -20,7 +21,7 @@ provenance:
 metadata:
   source_id: "skill_md:notebook-builder:a67871"
   skill_format: canonical
-generated_at: "2026-03-14T21:38:58.805794+00:00"
+generated_at: "2026-03-14T21:53:05.390645+00:00"
 ---
 
 # Notebook Builder
