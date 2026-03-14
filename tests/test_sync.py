@@ -277,50 +277,50 @@ class TestSync:
         output = tmp_path / "output"
         sync(brunnr_tree, output)
 
-        assert (output / "signal-scan.mdx").exists()
-        assert (output / "pitch.mdx").exists()
-        assert (output / "lesson-generator.mdx").exists()
-        assert (output / "sketches.mdx").exists()
+        assert (output / "signal-scan.md").exists()
+        assert (output / "pitch.md").exists()
+        assert (output / "lesson-generator.md").exists()
+        assert (output / "sketches.md").exists()
 
     def test_skips_convention_files(self, brunnr_tree, tmp_path):
         output = tmp_path / "output"
         sync(brunnr_tree, output)
 
-        assert not (output / "_conventions.mdx").exists()
-        assert not (output / "_educational-suite-conventions.mdx").exists()
+        assert not (output / "_conventions.md").exists()
+        assert not (output / "_educational-suite-conventions.md").exists()
 
     def test_skips_empty_directories(self, brunnr_tree, tmp_path):
         output = tmp_path / "output"
         sync(brunnr_tree, output)
 
-        assert not (output / "empty-dir.mdx").exists()
+        assert not (output / "empty-dir.md").exists()
 
     def test_product_discovery_domain(self, brunnr_tree, tmp_path):
         output = tmp_path / "output"
         sync(brunnr_tree, output)
 
-        content = (output / "signal-scan.mdx").read_text()
+        content = (output / "signal-scan.md").read_text()
         assert 'domain: "product-discovery"' in content
 
     def test_education_domain(self, brunnr_tree, tmp_path):
         output = tmp_path / "output"
         sync(brunnr_tree, output)
 
-        content = (output / "lesson-generator.mdx").read_text()
+        content = (output / "lesson-generator.md").read_text()
         assert 'domain: "education"' in content
 
     def test_utility_domain(self, brunnr_tree, tmp_path):
         output = tmp_path / "output"
         sync(brunnr_tree, output)
 
-        content = (output / "sketches.mdx").read_text()
+        content = (output / "sketches.md").read_text()
         assert 'domain: "utility"' in content
 
     def test_tags_extracted(self, brunnr_tree, tmp_path):
         output = tmp_path / "output"
         sync(brunnr_tree, output)
 
-        content = (output / "signal-scan.mdx").read_text()
+        content = (output / "signal-scan.md").read_text()
         assert '"pipeline"' in content
 
     def test_idempotent_sync(self, brunnr_tree, tmp_path, capsys):
@@ -360,7 +360,7 @@ class TestSync:
         output = tmp_path / "output"
         sync(brunnr_tree, output)
 
-        mdx_files = list(output.glob("*.mdx"))
+        mdx_files = list(output.glob("*.md"))
         assert len(mdx_files) == 4  # signal-scan, pitch, lesson-generator, sketches
 
     def test_references_not_synced_as_entries(self, brunnr_tree, tmp_path):
@@ -368,8 +368,8 @@ class TestSync:
         output = tmp_path / "output"
         sync(brunnr_tree, output)
 
-        assert not (output / "template.mdx").exists()
-        assert not (output / "references.mdx").exists()
+        assert not (output / "template.md").exists()
+        assert not (output / "references.md").exists()
 
     def test_skipped_reported(self, brunnr_tree, tmp_path, capsys):
         output = tmp_path / "output"
