@@ -16,11 +16,11 @@
 
 Agents forget everything between sessions. Skillipedia writes down what they needed to know, in a format agents and people can both read.
 
-It has 41 entries, each with a claim, a confidence score, and provenance:
+It has 42 entries, each with a claim, a confidence score, and provenance:
 
 | Type | Entries | What it is |
 |------|---------|------------|
-| **Skill** | 39 | A repeatable capability an agent can execute |
+| **Skill** | 40 | A repeatable capability an agent can execute |
 | **Pattern** | 1 | A structural solution that shows up across codebases |
 | **Learning** | 1 | Something we got wrong, then got right, then wrote down |
 
