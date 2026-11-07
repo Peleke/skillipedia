@@ -3,3 +3,6 @@ dist/
 .astro/
 .vercel/
 .vercel
+
+__pycache__/
+*.pyc
