@@ -64,3 +64,9 @@ python scripts/sync-from-brunnr.py --brunnr-dir ../brunnr --output-dir src/conte
 ## Stack
 
 [Astro](https://astro.build) · Tailwind CSS · Python (standard library) for the sync script · [Vercel](https://vercel.com)
+
+---
+
+## License
+
+[MIT](LICENSE)
