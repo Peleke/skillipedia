@@ -17,11 +17,11 @@ provenance:
   source_concepts:
     - "skill:slidev-deck"
   confidence: 0.75
-  source_id: "skill_md:slidev-deck:887cd6"
+  source_id: "skill_md:slidev-deck:95a7ee"
 metadata:
-  source_id: "skill_md:slidev-deck:887cd6"
+  source_id: "skill_md:slidev-deck:95a7ee"
   skill_format: canonical
-generated_at: "2026-03-14T21:53:05.399379+00:00"
+generated_at: "2026-11-18T03:18:35.074603+00:00"
 ---
 
 # Slidev Deck

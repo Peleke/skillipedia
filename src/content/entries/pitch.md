@@ -18,11 +18,11 @@ provenance:
   source_concepts:
     - "skill:pitch"
   confidence: 0.75
-  source_id: "skill_md:pitch:577b81"
+  source_id: "skill_md:pitch:be6816"
 metadata:
-  source_id: "skill_md:pitch:577b81"
+  source_id: "skill_md:pitch:be6816"
   skill_format: canonical
-generated_at: "2026-03-14T21:53:05.392984+00:00"
+generated_at: "2026-11-18T03:18:35.069175+00:00"
 ---
 
 # Pitch
