@@ -21,7 +21,7 @@ provenance:
 metadata:
   source_id: "skill_md:linwheel-source-optimizer:f7a820"
   skill_format: canonical
-generated_at: "2026-11-18T03:18:35.065514+00:00"
+generated_at: "2026-11-18T02:31:38.617133+00:00"
 ---
 
 # LinWheel Source Optimizer

@@ -21,7 +21,7 @@ provenance:
 metadata:
   source_id: "skill_md:learning-check:b4d6d8"
   skill_format: canonical
-generated_at: "2026-11-18T03:18:35.063086+00:00"
+generated_at: "2026-11-18T02:31:38.615150+00:00"
 ---
 
 # Learning Check

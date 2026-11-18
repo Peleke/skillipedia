@@ -17,11 +17,11 @@ provenance:
   source_concepts:
     - "skill:inline-svg-architecture-diagrams"
   confidence: 0.75
-  source_id: "skill_md:inline-svg-architecture-diagrams:d3a541"
+  source_id: "skill_md:inline-svg-architecture-diagrams:836bd6"
 metadata:
-  source_id: "skill_md:inline-svg-architecture-diagrams:d3a541"
+  source_id: "skill_md:inline-svg-architecture-diagrams:836bd6"
   skill_format: canonical
-generated_at: "2026-03-14T21:53:05.384017+00:00"
+generated_at: "2026-11-18T03:17:38.558069+00:00"
 ---
 
 # Inline SVG Architecture Diagrams
@@ -71,7 +71,7 @@ Phase 7: Wrap in container with hover styles and caption
 ```yaml
 - id: knowledge
   label: "01 · KNOWLEDGE"
-  title: "qortex"
+  title: "core-engine"
   output_label: "→ rules"        # optional right-side annotation
   icon: knowledge-graph           # see Icon Reference below
   link: "https://..."             # optional clickable link
@@ -740,7 +740,7 @@ From `portfolio/public/diagrams/feedback-loop.svg` — a 6-step vertical flow wi
         font-family="'Segoe Print', 'Comic Sans MS', 'Caveat', cursive"
         font-size="22" fill="#e0e0e0" font-weight="bold"
         transform="rotate(-0.6, 336, 38)">
-    Qortex Feedback Loop
+    Feedback Loop
   </text>
   <path d="M 182,46 C 230,48 340,44 490,47"
         stroke="rgb(168,85,247)" stroke-width="1.5" fill="none"

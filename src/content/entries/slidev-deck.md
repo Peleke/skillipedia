@@ -21,7 +21,7 @@ provenance:
 metadata:
   source_id: "skill_md:slidev-deck:95a7ee"
   skill_format: canonical
-generated_at: "2026-11-18T03:18:35.074603+00:00"
+generated_at: "2026-11-18T02:31:38.626658+00:00"
 ---
 
 # Slidev Deck
