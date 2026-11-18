@@ -17,11 +17,11 @@ provenance:
   source_concepts:
     - "skill:linwheel-source-optimizer"
   confidence: 0.75
-  source_id: "skill_md:linwheel-source-optimizer:8e82d2"
+  source_id: "skill_md:linwheel-source-optimizer:f7a820"
 metadata:
-  source_id: "skill_md:linwheel-source-optimizer:8e82d2"
+  source_id: "skill_md:linwheel-source-optimizer:f7a820"
   skill_format: canonical
-generated_at: "2026-03-14T21:53:05.388506+00:00"
+generated_at: "2026-11-18T02:31:38.617133+00:00"
 ---
 
 # LinWheel Source Optimizer
@@ -58,7 +58,7 @@ that a columnist will turn into articles.
 ## Vault Output Path
 
 ```
-${VAULT}/Buildlog/
+${VAULT}/Buildlog/   (${VAULT} = your Obsidian vault path)
 ```
 
 Filename: `YYYY-MM-DD-{slug}.md` (e.g., `2026-02-27-github-watcher-shipped.md`)

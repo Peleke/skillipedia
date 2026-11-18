@@ -17,11 +17,11 @@ provenance:
   source_concepts:
     - "skill:runlet"
   confidence: 0.75
-  source_id: "skill_md:runlet:e444b9"
+  source_id: "skill_md:runlet:8d289f"
 metadata:
-  source_id: "skill_md:runlet:e444b9"
+  source_id: "skill_md:runlet:8d289f"
   skill_format: canonical
-generated_at: "2026-03-14T21:53:05.396483+00:00"
+generated_at: "2026-11-18T02:31:38.623734+00:00"
 ---
 
 # Runlet — ND-Adapted Daily Task Compiler
@@ -201,7 +201,7 @@ Group Batch items by context. Label the groups so they can be done in clumps —
 
 A markdown file at:
 ```
-${VAULT}/Runlist/YYYY-MM-DD.md
+<your-obsidian-vault>/Runlist/YYYY-MM-DD.md
 ```
 
 ### Format
