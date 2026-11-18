@@ -32,7 +32,7 @@ You can search the entries, filter them by skill set, or browse by domain.
 
 Skills come from [brunnr](https://github.com/Peleke/brunnr), a security scanner and skills marketplace for Claude Code.
 
-1. brunnr pushes a skill update and sends a `brunnr-skills-updated` dispatch.
+1. Every 6 hours (and on demand), a GitHub Actions job checks out brunnr's `skills/`.
 2. `scripts/sync-from-brunnr.py` converts each `SKILL.md` into an entry in `src/content/entries/`.
 3. GitHub Actions commits the changed entries and builds the site.
 

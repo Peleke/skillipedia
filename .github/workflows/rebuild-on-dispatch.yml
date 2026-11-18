@@ -1,10 +1,11 @@
-# Rebuild when brunnr pushes skill updates, or on push to main.
-# On dispatch: fetches brunnr skills, syncs MDX entries, commits, builds.
+# Sync skill entries from brunnr every 6 hours, and build on push to main.
+# brunnr is public, so the checkout needs no cross-repo token.
+# Fetches brunnr skills, syncs MDX entries, commits if changed, builds.
 name: Build Skillipedia
 
 on:
-  repository_dispatch:
-    types: [brunnr-skills-updated]
+  schedule:
+    - cron: '17 */6 * * *'
   push:
     branches: [main]
   workflow_dispatch:
@@ -40,7 +41,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "No entry changes to commit"
           else
-            git commit -m "chore: sync skill entries from brunnr (${{ github.event.client_payload.sha || 'manual' }})"
+            git commit -m "chore: sync skill entries from brunnr ($(git -C _brunnr rev-parse --short HEAD))"
             git push
           fi
 
